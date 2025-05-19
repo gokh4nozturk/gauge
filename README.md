@@ -27,22 +27,32 @@ yarn add vue-gauge-component
 pnpm add vue-gauge-component
 ```
 
-## Usage
+### Global Registration
+
+```js
+// main.js or main.ts
+import { createApp } from 'vue'
+import App from './App.vue'
+import VueCircularGauge from 'vue-circular-gauge'
+
+// Optional: import CSS if your bundler supports it
+import 'vue-circular-gauge/style.css'
+
+const app = createApp(App)
+app.use(VueCircularGauge)
+app.mount('#app')
+```
+
+### Local Registration
 
 ```vue
-<template>
-  <Gauge :value="42" />
-</template>
-
-<script>
-import { Gauge } from 'vue-gauge-component'
-
-export default {
-  components: {
-    Gauge,
-  },
-}
+<script setup>
+import { Gauge } from 'vue-circular-gauge'
 </script>
+
+<template>
+  <Gauge :value="75" />
+</template>
 ```
 
 ## Props
