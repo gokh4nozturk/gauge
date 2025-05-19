@@ -63,7 +63,7 @@ function copyConfig() {
 }
 </script>
 <template>
-  <section class="mt-20 mb-10 border-t pt-8" id="playground">
+  <section class="mt-20 border-t pt-8" id="playground">
     <h2 class="text-3xl font-bold mb-4 text-center">Playground</h2>
     <p class="text-center text-lg mb-6 text-muted-foreground">
       Play with the configuration of the Gauge

@@ -48,7 +48,7 @@ function handleMouseLeave() {
 }
 </script>
 <template>
-  <footer class="bg-background h-44 text-muted-foreground relative border-t">
+  <footer class="bg-background h-44 text-muted-foreground relative border-t mt-10">
     <div class="flex flex-col justify-center items-center h-full gap-2">
       <p>© {{ new Date().getFullYear() }} Gauge. All rights reserved.</p>
       <Button variant="link" class="text-sm p-0" @click="openGitHub">
