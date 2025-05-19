@@ -1,5 +1,14 @@
 <script setup lang="ts">
 import CodeBlock from '@/components/ui/CodeBlock.vue'
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table'
 
 const title = 'Gauge Documentation'
 
@@ -40,25 +49,26 @@ import { Gauge } from '@/components/Gauge'
 
     <section>
       <div class="overflow-x-auto">
-        <table class="min-w-full border-collapse">
-          <thead>
-            <tr class="border-b">
-              <th class="py-3 px-4 text-left font-medium text-gray-700">Property</th>
-              <th class="py-3 px-4 text-left font-medium text-gray-700">Description</th>
-              <th class="py-3 px-4 text-right font-medium text-gray-700">Default</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y">
-            <tr class="hover:bg-gray-50">
-              <td class="py-4 px-4 align-top font-medium">value</td>
-              <td class="py-4 px-4 align-top text-gray-700">
+        <Table>
+          <TableCaption>Gauge Component Properties</TableCaption>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Property</TableHead>
+              <TableHead>Description</TableHead>
+              <TableHead class="text-right">Default</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            <TableRow>
+              <TableCell class="font-medium">value</TableCell>
+              <TableCell>
                 The value of the Gauge. It should be a number between 0 and 100.
-              </td>
-              <td class="py-4 px-4 text-right align-top"></td>
-            </tr>
-            <tr class="hover:bg-gray-50">
-              <td class="py-4 px-4 align-top font-medium">size</td>
-              <td class="py-4 px-4 align-top text-gray-700">
+              </TableCell>
+              <TableCell class="text-right"></TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell class="font-medium">size</TableCell>
+              <TableCell>
                 Width and height of the Gauge. It can be one of the following sizes:
                 <code class="bg-gray-100 px-1 py-0.5 rounded">xs</code>,
                 <code class="bg-gray-100 px-1 py-0.5 rounded">sm</code>,
@@ -68,56 +78,52 @@ import { Gauge } from '@/components/Gauge'
                 <code class="bg-gray-100 px-1 py-0.5 rounded">2xl</code>, or a numeric value as
                 <code class="bg-gray-100 px-1 py-0.5 rounded">number</code> or
                 <code class="bg-gray-100 px-1 py-0.5 rounded">string</code>.
-              </td>
-              <td class="py-4 px-4 text-right align-top">
+              </TableCell>
+              <TableCell class="text-right">
                 <span class="bg-gray-100 px-2 py-1 rounded">md</span>
-              </td>
-            </tr>
-            <tr class="hover:bg-gray-50">
-              <td class="py-4 px-4 align-top font-medium">gapPercent</td>
-              <td class="py-4 px-4 align-top text-gray-700">
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell class="font-medium">gapPercent</TableCell>
+              <TableCell>
                 Percentage of the total circumference that represents a gap between primary and
                 secondary arcs.
-              </td>
-              <td class="py-4 px-4 text-right align-top">
+              </TableCell>
+              <TableCell class="text-right">
                 <span class="bg-gray-100 px-2 py-1 rounded">5</span>
-              </td>
-            </tr>
-            <tr class="hover:bg-gray-50">
-              <td class="py-4 px-4 align-top font-medium">strokeWidth</td>
-              <td class="py-4 px-4 align-top text-gray-700">Stroke width of the Gauge.</td>
-              <td class="py-4 px-4 text-right align-top">
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell class="font-medium">strokeWidth</TableCell>
+              <TableCell>Stroke width of the Gauge.</TableCell>
+              <TableCell class="text-right">
                 <span class="bg-gray-100 px-2 py-1 rounded">10</span>
-              </td>
-            </tr>
-            <tr class="hover:bg-gray-50">
-              <td class="py-4 px-4 align-top font-medium">variant</td>
-              <td class="py-4 px-4 align-top text-gray-700">Direction of the Gauge's animation.</td>
-              <td class="py-4 px-4 text-right align-top">
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell class="font-medium">variant</TableCell>
+              <TableCell>Direction of the Gauge's animation.</TableCell>
+              <TableCell class="text-right">
                 <span class="bg-gray-100 px-2 py-1 rounded">ascending</span>
-              </td>
-            </tr>
-            <tr class="hover:bg-gray-50">
-              <td class="py-4 px-4 align-top font-medium">showValue</td>
-              <td class="py-4 px-4 align-top text-gray-700">
-                Option to display the numeric value inside the Gauge.
-              </td>
-              <td class="py-4 px-4 text-right align-top">
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell class="font-medium">showValue</TableCell>
+              <TableCell> Option to display the numeric value inside the Gauge. </TableCell>
+              <TableCell class="text-right">
                 <span class="bg-gray-100 px-2 py-1 rounded">false</span>
-              </td>
-            </tr>
-            <tr class="hover:bg-gray-50">
-              <td class="py-4 px-4 align-top font-medium">showAnimation</td>
-              <td class="py-4 px-4 align-top text-gray-700">
-                Option to animate the Gauge's progress.
-              </td>
-              <td class="py-4 px-4 text-right align-top">
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell class="font-medium">showAnimation</TableCell>
+              <TableCell> Option to animate the Gauge's progress. </TableCell>
+              <TableCell class="text-right">
                 <span class="bg-gray-100 px-2 py-1 rounded">false</span>
-              </td>
-            </tr>
-            <tr class="hover:bg-gray-50">
-              <td class="py-4 px-4 align-top font-medium">primary</td>
-              <td class="py-4 px-4 align-top text-gray-700">
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell class="font-medium">primary</TableCell>
+              <TableCell>
                 Primary color or set of colors for the Gauge, with optional threshold values to
                 determine color changes. Default primary color scale goes as
                 <span class="inline-flex items-center">
@@ -138,42 +144,40 @@ import { Gauge } from '@/components/Gauge'
                   <span class="w-4 h-4 inline-block bg-green-500 rounded-full mr-1"></span> green
                   (76-100) </span
                 >.
-              </td>
-              <td class="py-4 px-4 text-right align-top"></td>
-            </tr>
-            <tr class="hover:bg-gray-50">
-              <td class="py-4 px-4 align-top font-medium">secondary</td>
-              <td class="py-4 px-4 align-top text-gray-700">
+              </TableCell>
+              <TableCell class="text-right"></TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell class="font-medium">secondary</TableCell>
+              <TableCell>
                 Secondary color or set of colors for the Gauge, similar to
                 <code class="bg-gray-100 px-1 py-0.5 rounded">primary</code>. Default secondary
                 color is gray.
-              </td>
-              <td class="py-4 px-4 text-right align-top">
+              </TableCell>
+              <TableCell class="text-right">
                 <span class="w-4 h-4 inline-block bg-gray-200 rounded-full"></span>
-              </td>
-            </tr>
-            <tr class="hover:bg-gray-50">
-              <td class="py-4 px-4 align-top font-medium">props</td>
-              <td class="py-4 px-4 align-top text-gray-700">
-                Any other prop accepted by a Vue SVG element.
-              </td>
-              <td class="py-4 px-4 text-right align-top"></td>
-            </tr>
-          </tbody>
-        </table>
+              </TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell class="font-medium">props</TableCell>
+              <TableCell> Any other prop accepted by a Vue SVG element. </TableCell>
+              <TableCell class="text-right"></TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
       </div>
     </section>
 
     <section class="mt-12">
       <h2 class="text-2xl font-semibold mb-4">Basic Usage</h2>
-      <div class="bg-gray-100 p-4 rounded-lg overflow-x-auto">
+      <div class="bg-gray-100 dark:bg-gray-300 p-4 rounded-lg overflow-x-auto">
         <CodeBlock :code="basicUsageCode" language="vue" />
       </div>
     </section>
 
     <section class="mt-8">
       <h2 class="text-2xl font-semibold mb-4">Custom Example</h2>
-      <div class="bg-gray-100 p-4 rounded-lg overflow-x-auto">
+      <div class="bg-gray-100 dark:bg-gray-300 p-4 rounded-lg overflow-x-auto">
         <CodeBlock :code="customExampleCode" language="vue" />
       </div>
     </section>
