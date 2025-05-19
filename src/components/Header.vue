@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import ModeToggle from '@/components/ModeToggle.vue'
 import { Button } from '@/components/ui/button'
 import { useRouter } from 'vue-router'
@@ -12,6 +12,7 @@ import {
   SelectItem,
 } from '@/components/ui/select'
 import { AnimatePresence, motion } from 'motion-v'
+
 const router = useRouter()
 
 const packageManager = ref('npm')
@@ -22,6 +23,19 @@ const packageManagers = {
   pnpm: 'add vue-circular-gauge',
   bun: 'add vue-circular-gauge',
 }
+
+watch(packageManager, (value) => {
+  localStorage.setItem('packageManager', value)
+})
+
+onMounted(() => {
+  const storage = localStorage.getItem('packageManager')
+  if (storage) {
+    packageManager.value = storage
+  } else {
+    localStorage.setItem('packageManager', packageManager.value)
+  }
+})
 
 function openGitHub() {
   window.open('https://github.com/gokh4nozturk/gauge?ref=gauge-component', '_blank')
