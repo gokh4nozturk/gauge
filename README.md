@@ -1,64 +1,125 @@
-# gauge
+# Vue Gauge Component
 
-This template should help get you started developing with Vue 3 in Vite.
+A customizable circular gauge/progress component for Vue.js. This component is a Vue port of the [Gauge component by Onur Şuyalçınkaya](https://github.com/suyalcinkaya/gauge).
 
-## Recommended IDE Setup
+![Vue Gauge Component Preview](./preview.png)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Features
 
-## Type Support for `.vue` Imports in TS
+- Customizable size
+- Customizable colors
+- Customizable stroke width
+- Animated progress
+- Ascending or descending variants
+- Display value inside gauge
+- Fully reactive
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+## Installation
 
-## Customize configuration
+```bash
+# npm
+npm install vue-gauge-component
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+# yarn
+yarn add vue-gauge-component
 
-## Project Setup
-
-```sh
-pnpm install
+# pnpm
+pnpm add vue-gauge-component
 ```
 
-### Compile and Hot-Reload for Development
+## Usage
 
-```sh
-pnpm dev
+```vue
+<template>
+  <Gauge :value="42" />
+</template>
+
+<script>
+import { Gauge } from 'vue-gauge-component'
+
+export default {
+  components: {
+    Gauge,
+  },
+}
+</script>
 ```
 
-### Type-Check, Compile and Minify for Production
+## Props
 
-```sh
-pnpm build
+| Name          | Type                  | Default     | Description                                                       |
+| ------------- | --------------------- | ----------- | ----------------------------------------------------------------- |
+| value         | Number                | -           | The value of the gauge (0-100)                                    |
+| size          | String, Number        | 'md'        | Size of the gauge (xs, sm, md, lg, xl, 2xl, or a numeric value)   |
+| gapPercent    | Number                | 5           | Percentage of the circumference representing the gap between arcs |
+| strokeWidth   | Number                | 10          | Width of the gauge stroke                                         |
+| variant       | String                | 'ascending' | Direction of gauge animation ('ascending' or 'descending')        |
+| showValue     | Boolean               | false       | Whether to display the current value inside the gauge             |
+| showAnimation | Boolean               | false       | Whether to animate the gauge when it first renders                |
+| primary       | String, Array, Object | null        | Primary color or color scale for the gauge                        |
+| secondary     | String, Array, Object | null        | Secondary color or color scale for the gauge                      |
+
+## Default Color Scale
+
+If no primary color is specified, the component will use a default color scale based on the value:
+
+- 0-25: Red (#ef4444)
+- 26-50: Amber (#f59e0b)
+- 51-75: Blue (#3b82f6)
+- 76-100: Green (#22c55e)
+
+The default secondary color is gray (#e5e7eb).
+
+## Examples
+
+### Basic Usage
+
+```vue
+<Gauge :value="42" />
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+### With Value Display
 
-```sh
-pnpm test:unit
+```vue
+<Gauge :value="75" :show-value="true" />
 ```
 
-### Run End-to-End Tests with [Playwright](https://playwright.dev)
+### Custom Sizes
 
-```sh
-# Install browsers for the first run
-npx playwright install
+```vue
+<Gauge :value="60" size="xs" />
+<Gauge :value="60" size="sm" />
+<Gauge :value="60" size="md" />
+<Gauge :value="60" size="lg" />
+<Gauge :value="60" size="xl" />
+<Gauge :value="60" size="2xl" />
 
-# When testing on CI, must build the project first
-pnpm build
-
-# Runs the end-to-end tests
-pnpm test:e2e
-# Runs the tests only on Chromium
-pnpm test:e2e --project=chromium
-# Runs the tests of a specific file
-pnpm test:e2e tests/example.spec.ts
-# Runs the tests in debug mode
-pnpm test:e2e --debug
+<!-- Custom size -->
+<Gauge :value="60" :size="100" />
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+### Different Variants
 
-```sh
-pnpm lint
+```vue
+<!-- Ascending (clockwise) -->
+<Gauge :value="30" variant="ascending" />
+
+<!-- Descending (counterclockwise) -->
+<Gauge :value="30" variant="descending" />
 ```
+
+### Custom Colors
+
+```vue
+<Gauge :value="50" primary="#3b82f6" secondary="#e5e7eb" />
+```
+
+### With Animation
+
+```vue
+<Gauge :value="80" :show-animation="true" :show-value="true" size="lg" />
+```
+
+## License
+
+MIT
