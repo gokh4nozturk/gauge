@@ -31,14 +31,6 @@ function openDocs() {
           <h1 class="text-foreground text-2xl font-bold">Gauge</h1>
           <p>A simple and customizable circular gauge component for Vue 3.</p>
         </div>
-        <div class="flex flex-col gap-2">
-          <p class="text-sm">
-            <span class="font-bold">Credits: </span>
-            <Button variant="link" class="text-muted-foreground p-0 text-sm" @click="openOnur">
-              Onur Şuyalçınkaya
-            </Button>
-          </p>
-        </div>
       </div>
       <div class="grid grid-rows-[1fr_auto]">
         <div class="flex justify-end">
