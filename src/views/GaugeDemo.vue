@@ -30,7 +30,7 @@ function resetAnimation() {
 </script>
 
 <template>
-  <main class="p-6 container mx-auto space-y-10">
+  <main class="space-y-10">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
       <Card class="p-4 border rounded-lg flex flex-col items-center">
         <CardTitle class="text-lg font-medium mb-4 text-center">Default</CardTitle>
@@ -71,10 +71,6 @@ function resetAnimation() {
             <div class="flex flex-col items-center">
               <span class="text-sm mb-2">LG</span>
               <Gauge :value="value" size="lg" primary="#22c55e" />
-            </div>
-            <div class="flex flex-col items-center">
-              <span class="text-sm mb-2">100px</span>
-              <Gauge :value="value" :size="100" primary="#8b5cf6" />
             </div>
           </div>
           <CardDescription class="mt-4 text-sm text-gray-500">

@@ -23,7 +23,7 @@ function openDocs() {
 </script>
 <template>
   <header
-    class="p-4 h-52 text-muted-foreground container mx-auto bg-gradient-to-b rounded-lg from-[#f9f9f9] to-[#e2e8f0] dark:from-[#1c1917] dark:to-[#111827]"
+    class="p-4 mb-10 h-52 text-muted-foreground bg-gradient-to-b rounded-lg from-[#f9f9f9] to-[#e2e8f0] dark:from-[#1c1917] dark:to-[#111827]"
   >
     <div class="flex justify-between h-full">
       <div class="grid grid-rows-[1fr_auto] gap-4">
