@@ -6,7 +6,7 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: () => import('../components/ui/GaugeDemo.vue'),
+      component: () => import('@/views/GaugeDemo.vue'),
     },
   ],
 })

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import Gauge from './Gauge.vue'
-import Button from './button/Button.vue'
+import Gauge from '@/components/ui/Gauge.vue'
+import { Button } from '@/components/ui/button'
 
 const value = ref(50)
 const animating = ref(true)
@@ -19,7 +19,7 @@ function resetAnimation() {
   animationValue.value = 0
   setTimeout(() => {
     animationValue.value = 72
-  }, 100)
+  }, 1000)
 }
 </script>
 
