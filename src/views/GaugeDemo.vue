@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Card, CardTitle, CardContent, CardDescription } from '@/components/ui/card'
 import Playground from '@/components/Playground.vue'
 import Header from '@/components/Header.vue'
+import Footer from '@/components/Footer.vue'
 const value = ref(50)
 const animating = ref(true)
 const animationValue = ref(72)
@@ -248,5 +249,6 @@ function resetAnimation() {
 
     <!-- Playground Section -->
     <Playground />
+    <Footer />
   </div>
 </template>

@@ -5,6 +5,10 @@ import { Button } from '@/components/ui/button'
 function openGitHub() {
   window.open('https://github.com/gokh4nozturk/gauge?ref=gauge-component', '_blank')
 }
+
+function openOnur() {
+  window.open('https://gauge.onur.dev?ref=gauge-component', '_blank')
+}
 </script>
 <template>
   <header
@@ -17,16 +21,18 @@ function openGitHub() {
           <p>A simple and customizable circular gauge component for Vue 3.</p>
         </div>
         <div class="flex flex-col gap-2">
-          <p class="text-sm"><span class="font-bold">Version:</span> 0.0.1</p>
-          <p class="text-sm"><span class="font-bold">License:</span> MIT</p>
           <p class="text-sm">
-            <span class="font-bold">Credits:</span>
-            <a href="https://gauge.onur.dev" target="_blank"> Onur Şuyalçınkaya</a>
+            <span class="font-bold">Credits: </span>
+            <Button variant="link" class="text-sm text-muted-foreground p-0" @click="openOnur">
+              Onur Şuyalçınkaya
+            </Button>
           </p>
         </div>
       </div>
-      <div class="flex items-end flex-col gap-2">
-        <ModeToggle />
+      <div class="grid grid-rows-[1fr_auto]">
+        <div class="flex justify-end">
+          <ModeToggle />
+        </div>
         <div class="flex flex-col items-end">
           <Button variant="link" class="text-sm p-0" @click="openGitHub"> View on GitHub </Button>
           <Button variant="link" class="text-sm p-0" as-child>
