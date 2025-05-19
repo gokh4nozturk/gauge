@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref, watch } from 'vue'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import CodeBlock from '@/components/ui/CodeBlock.vue'
 import { Separator } from '@/components/ui/separator'
@@ -11,9 +12,14 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { useHead } from '@unhead/vue'
+import { Check, Copy } from 'lucide-vue-next'
+import { Button } from '@/components/ui/button'
+import { AnimatePresence, motion } from 'motion-v'
+import { toast } from 'vue-sonner'
 
 const title = 'Gauge Documentation'
+const copiedBasicUsage = ref(false)
+const copiedCustomExample = ref(false)
 
 const basicUsageCode = `<script setup lang="ts">
 import { Gauge } from '@/components/Gauge'
@@ -90,6 +96,34 @@ const api = [
     default: 'null',
   },
 ]
+
+watch(copiedBasicUsage, (value) => {
+  if (value) {
+    setTimeout(() => {
+      copiedBasicUsage.value = false
+    }, 3000)
+  }
+})
+
+watch(copiedCustomExample, (value) => {
+  if (value) {
+    setTimeout(() => {
+      copiedCustomExample.value = false
+    }, 3000)
+  }
+})
+
+function copyBasicUsage() {
+  navigator.clipboard.writeText(basicUsageCode)
+  copiedBasicUsage.value = true
+  toast.success('Copied to clipboard')
+}
+
+function copyCustomExample() {
+  navigator.clipboard.writeText(customExampleCode)
+  copiedCustomExample.value = true
+  toast.success('Copied to clipboard')
+}
 </script>
 
 <template>
@@ -132,7 +166,33 @@ const api = [
 
     <Card>
       <CardHeader>
-        <CardTitle class="text-2xl font-semibold">Basic Usage</CardTitle>
+        <div class="flex items-center justify-between">
+          <CardTitle class="text-2xl font-semibold">Basic Usage</CardTitle>
+          <Button variant="outline" size="icon" @click="copyBasicUsage">
+            <AnimatePresence mode="popLayout">
+              <motion.div
+                v-if="!copiedBasicUsage"
+                key="copy"
+                :initial="{ opacity: 0, y: -10 }"
+                :animate="{ opacity: 1, y: 0 }"
+                :exit="{ opacity: 0, y: -10 }"
+                :transition="{ duration: 0.2 }"
+              >
+                <Copy class="w-4 h-4" />
+              </motion.div>
+              <motion.div
+                v-else
+                key="check"
+                :initial="{ opacity: 0, y: 10 }"
+                :animate="{ opacity: 1, y: 0 }"
+                :exit="{ opacity: 0, y: 10 }"
+                :transition="{ duration: 0.2 }"
+              >
+                <Check class="w-4 h-4 text-emerald-500" />
+              </motion.div>
+            </AnimatePresence>
+          </Button>
+        </div>
       </CardHeader>
       <Separator />
       <CardContent class="[&_*]:text-foreground rounded-lg">
@@ -142,7 +202,33 @@ const api = [
 
     <Card>
       <CardHeader>
-        <CardTitle class="text-2xl font-semibold">Custom Example</CardTitle>
+        <div class="flex items-center justify-between">
+          <CardTitle class="text-2xl font-semibold">Custom Example</CardTitle>
+          <Button variant="outline" size="icon" @click="copyCustomExample">
+            <AnimatePresence mode="popLayout">
+              <motion.div
+                v-if="!copiedCustomExample"
+                key="copy"
+                :initial="{ opacity: 0, y: -10 }"
+                :animate="{ opacity: 1, y: 0 }"
+                :exit="{ opacity: 0, y: -10 }"
+                :transition="{ duration: 0.2 }"
+              >
+                <Copy class="w-4 h-4" />
+              </motion.div>
+              <motion.div
+                v-else
+                key="check"
+                :initial="{ opacity: 0, y: 10 }"
+                :animate="{ opacity: 1, y: 0 }"
+                :exit="{ opacity: 0, y: 10 }"
+                :transition="{ duration: 0.2 }"
+              >
+                <Check class="w-4 h-4 text-emerald-500" />
+              </motion.div>
+            </AnimatePresence>
+          </Button>
+        </div>
       </CardHeader>
       <Separator />
       <CardContent class="[&_*]:text-foreground rounded-lg">
