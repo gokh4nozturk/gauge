@@ -47,7 +47,7 @@ function openDocs() {
         <div class="flex flex-col items-end">
           <Button variant="link" class="text-sm p-0" @click="openGitHub"> View on GitHub </Button>
           <Button variant="link" class="text-sm p-0" as-child>
-            <RouterLink to="#playground"> Playground </RouterLink>
+            <RouterLink to="/#playground"> Playground </RouterLink>
           </Button>
           <Button variant="link" class="text-sm p-0" @click="openDocs">
             {{ router.currentRoute.value.name === 'docs' ? 'Home' : 'Docs' }}
