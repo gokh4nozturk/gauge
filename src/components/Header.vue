@@ -1,9 +1,27 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import ModeToggle from '@/components/ModeToggle.vue'
 import { Button } from '@/components/ui/button'
 import { useRouter } from 'vue-router'
-
+import { Copy, Check } from 'lucide-vue-next'
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from '@/components/ui/select'
+import { AnimatePresence, motion } from 'motion-v'
 const router = useRouter()
+
+const packageManager = ref('npm')
+const copied = ref(false)
+const packageManagers = {
+  npm: 'i vue-circular-gauge',
+  yarn: 'add vue-circular-gauge',
+  pnpm: 'add vue-circular-gauge',
+  bun: 'add vue-circular-gauge',
+}
 
 function openGitHub() {
   window.open('https://github.com/gokh4nozturk/gauge?ref=gauge-component', '_blank')
@@ -20,6 +38,14 @@ function openDocs() {
     router.push({ name: 'docs' })
   }
 }
+
+function copy() {
+  navigator.clipboard.writeText(packageManagers[packageManager.value])
+  copied.value = true
+  setTimeout(() => {
+    copied.value = false
+  }, 2000)
+}
 </script>
 <template>
   <header
@@ -30,6 +56,44 @@ function openDocs() {
         <div class="flex flex-col gap-2">
           <h1 class="text-foreground text-2xl font-bold">Gauge</h1>
           <p>A simple and customizable circular gauge component for Vue 3.</p>
+        </div>
+        <div class="flex items-center gap-2">
+          <code class="bg-muted flex items-center rounded-md pr-4 text-sm">
+            <Select v-model="packageManager">
+              <SelectTrigger>
+                <SelectValue placeholder="Select a package manager" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem v-for="pm in Object.keys(packageManagers)" :key="pm" :value="pm">
+                  {{ pm }}
+                </SelectItem>
+              </SelectContent>
+            </Select>
+
+            {{ packageManagers[packageManager] }}
+          </code>
+          <Button variant="outline" size="icon" class="p-2" @click="copy">
+            <AnimatePresence mode="popLayout">
+              <motion.div
+                v-if="!copied"
+                :initial="{ opacity: 0, y: -10 }"
+                :animate="{ opacity: 1, y: 0 }"
+                :exit="{ opacity: 0, y: -10 }"
+                :transition="{ duration: 0.2 }"
+              >
+                <Copy class="h-4 w-4" />
+              </motion.div>
+              <motion.div
+                v-else
+                :initial="{ opacity: 0, y: 10 }"
+                :animate="{ opacity: 1, y: 0 }"
+                :exit="{ opacity: 0, y: 10 }"
+                :transition="{ duration: 0.2 }"
+              >
+                <Check class="h-4 w-4 text-emerald-500" />
+              </motion.div>
+            </AnimatePresence>
+          </Button>
         </div>
       </div>
       <div class="grid grid-rows-[1fr_auto]">
