@@ -4,6 +4,7 @@ import Gauge from '@/components/ui/Gauge.vue'
 import { Button } from '@/components/ui/button'
 import { Card, CardTitle, CardContent, CardDescription } from '@/components/ui/card'
 import Playground from '@/components/Playground.vue'
+import Header from '@/components/Header.vue'
 const value = ref(50)
 const animating = ref(true)
 const animationValue = ref(72)
@@ -29,8 +30,8 @@ function resetAnimation() {
 </script>
 
 <template>
-  <div class="p-6 container mx-auto">
-    <h1 class="text-2xl font-semibold mb-6 text-center">Gauge Component Examples</h1>
+  <div class="p-6 container mx-auto space-y-10">
+    <Header />
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
       <Card class="p-4 border rounded-lg flex flex-col items-center">
