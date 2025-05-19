@@ -154,6 +154,12 @@ const secondaryOpacity = computed(() =>
     offsetFactorSecondary.value,
   ),
 )
+
+// Calculate font size based on gauge size
+const fontSize = computed(() => {
+  const gaugeSize = sizeConfig[size as Size]?.size || 50
+  return Math.max(Math.floor(gaugeSize / 3), 12) // Scale font size with gauge size
+})
 </script>
 
 <template>
@@ -192,13 +198,13 @@ const secondaryOpacity = computed(() =>
     />
     <text
       v-if="showValue"
-      x="50%"
-      y="50%"
-      textAnchor="middle"
-      dominantBaseline="middle"
-      alignmentBaseline="central"
+      :x="circleSize / 2"
+      :y="circleSize / 2"
+      text-anchor="middle"
+      dominant-baseline="central"
       fill="currentColor"
-      :fontSize="32"
+      :font-size="fontSize"
+      dy="0.05em"
     >
       {{ Math.round(value) }}
     </text>
