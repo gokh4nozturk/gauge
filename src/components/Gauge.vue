@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, computed, onMounted, watch } from 'vue'
+import { motion } from 'motion-v'
 
 const props = defineProps({
   value: {
@@ -45,7 +46,6 @@ const props = defineProps({
 const displayValue = ref(0)
 const arcLength = ref(0)
 const arcOffset = ref(0)
-const isAnimating = ref(false)
 
 const computedSize = computed(() => {
   const sizeMap: Record<string, number> = {
@@ -83,13 +83,28 @@ const valueFontColor = computed(() => {
   return '#000'
 })
 
-const animationStyle = computed(() => {
-  if (!props.showAnimation) {
-    return {}
-  }
+// Animation configurations
+const foregroundAnimation = computed(() => {
+  const actualValue = props.variant === 'ascending' ? props.value : 100 - props.value
+  const percentage = actualValue / 100
+  const offset = arcLength.value * (1 - percentage)
 
   return {
-    transition: 'stroke-dashoffset 1s ease',
+    strokeDashoffset: offset,
+    transition: {
+      duration: props.showAnimation ? 1 : 0,
+      ease: 'easeInOut',
+    },
+  }
+})
+
+const initialAnimation = computed(() => {
+  if (!props.showAnimation) return {}
+
+  const initialOffset = props.variant === 'ascending' ? arcLength.value : 0
+
+  return {
+    strokeDashoffset: initialOffset,
   }
 })
 
@@ -103,28 +118,7 @@ function initializeArc(): void {
 }
 
 function updateGauge(value: number): void {
-  const actualValue = props.variant === 'ascending' ? value : 100 - value
-
-  // If animation is enabled, animate from 0 to the actual value
-  if (props.showAnimation && !isAnimating.value) {
-    isAnimating.value = true
-    displayValue.value = props.variant === 'ascending' ? 0 : 100
-
-    // Use setTimeout to trigger animation
-    setTimeout(() => {
-      displayValue.value = value
-      calculateArcOffset(actualValue)
-    }, 50)
-  } else {
-    displayValue.value = value
-    calculateArcOffset(actualValue)
-  }
-}
-
-function calculateArcOffset(value: number): void {
-  // Calculate the offset based on the value
-  const percentage = value / 100
-  arcOffset.value = arcLength.value * (1 - percentage)
+  displayValue.value = value
 }
 
 function getArcPath(value: number): string {
@@ -201,7 +195,7 @@ watch(
       :height="computedSize"
     >
       <!-- Background Arc -->
-      <path
+      <motion.path
         class="origin-center -rotate-90"
         :d="getArcPath(100)"
         :stroke="getGaugeColor(100, 'secondary')"
@@ -211,29 +205,32 @@ watch(
       />
 
       <!-- Foreground Arc -->
-      <path
+      <motion.path
         class="origin-center -rotate-90"
         :d="getArcPath(displayValue)"
         :stroke="getGaugeColor(displayValue, 'primary')"
         :stroke-width="strokeWidth"
         :stroke-linecap="'round'"
         :stroke-dasharray="arcLength"
-        :stroke-dashoffset="arcOffset"
+        :initial="initialAnimation"
+        :animate="foregroundAnimation"
         fill="none"
-        :style="animationStyle"
       />
 
       <!-- Value Text -->
-      <text
+      <motion.text
         v-if="showValue"
         x="60"
         y="66"
         text-anchor="middle"
         class="font-medium"
         :style="{ fontSize: valueFontSize, fill: valueFontColor }"
+        :initial="props.showAnimation ? { opacity: 0, scale: 0.8 } : {}"
+        :animate="{ opacity: 1, scale: 1 }"
+        :transition="{ delay: 0.2 }"
       >
         {{ Math.round(displayValue) }}
-      </text>
+      </motion.text>
     </svg>
   </div>
 </template>
