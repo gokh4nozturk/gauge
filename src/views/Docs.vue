@@ -142,18 +142,27 @@ const title = 'Gauge Documentation'
 
     <section class="mt-12">
       <h2 class="text-2xl font-semibold mb-4">Basic Usage</h2>
-      <pre class="bg-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;template&gt;
+      <pre
+        class="bg-gray-100 p-4 rounded-lg overflow-x-auto text-sm"
+      ><code>&lt;script setup lang="ts"&gt;
+import { Gauge } from '@/components/Gauge'
+&lt;/script&gt;
+
+&lt;template&gt;
   &lt;Gauge :value="75" /&gt;
 &lt;/template&gt;
-
-&lt;script setup lang="ts"&gt;
-import { Gauge } from '@/components/Gauge'
-&lt;/script&gt;</code></pre>
+</code></pre>
     </section>
 
     <section class="mt-8">
       <h2 class="text-2xl font-semibold mb-4">Custom Example</h2>
-      <pre class="bg-gray-100 p-4 rounded-lg overflow-x-auto text-sm"><code>&lt;template&gt;
+      <pre
+        class="bg-gray-100 p-4 rounded-lg overflow-x-auto text-sm"
+      ><code>&lt;script setup lang="ts"&gt;
+import { Gauge } from '@/components/Gauge'
+&lt;/script&gt;
+
+&lt;template&gt;
   &lt;Gauge
     :value="42"
     size="xl"
@@ -162,10 +171,7 @@ import { Gauge } from '@/components/Gauge'
     :showAnimation="true"
   /&gt;
 &lt;/template&gt;
-
-&lt;script setup lang="ts"&gt;
-import { Gauge } from '@/components/Gauge'
-&lt;/script&gt;</code></pre>
+</code></pre>
     </section>
 
     <footer class="mt-16 pt-6 border-t border-gray-200 text-sm text-gray-600">
