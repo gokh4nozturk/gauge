@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import Gauge from '@/components/ui/Gauge.vue'
 import { Button } from '@/components/ui/button'
-import { Card, CardTitle, CardDescription } from '@/components/ui/card'
+import { Card, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card'
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 import { Input } from '@/components/ui/input'
 import {
@@ -101,11 +101,11 @@ function resetPlaygroundAnimation() {
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  <SelectItem value="60"> 60 </SelectItem>
-                  <SelectItem value="120"> 120 </SelectItem>
-                  <SelectItem value="180"> 180 </SelectItem>
-                  <SelectItem value="240"> 240 </SelectItem>
-                  <SelectItem value="300"> 300 </SelectItem>
+                  <SelectItem :value="60"> 60 </SelectItem>
+                  <SelectItem :value="120"> 120 </SelectItem>
+                  <SelectItem :value="180"> 180 </SelectItem>
+                  <SelectItem :value="240"> 240 </SelectItem>
+                  <SelectItem :value="300"> 300 </SelectItem>
                 </SelectGroup>
               </SelectContent>
             </Select>
