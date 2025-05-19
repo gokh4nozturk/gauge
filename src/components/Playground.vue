@@ -2,7 +2,14 @@
 import { ref } from 'vue'
 import Gauge from '@/components/ui/Gauge.vue'
 import { Button } from '@/components/ui/button'
-import { Card, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card'
+import {
+  Card,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+  CardAction,
+} from '@/components/ui/card'
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 import { Input } from '@/components/ui/input'
 import {
@@ -14,8 +21,9 @@ import {
   SelectGroup,
 } from '@/components/ui/select'
 import { Label } from '@/components/ui/label'
-import { RotateCw } from 'lucide-vue-next'
+import { Copy, RotateCw } from 'lucide-vue-next'
 import { Checkbox } from '@/components/ui/checkbox'
+import { toast } from 'vue-sonner'
 // Playground reactive state
 const playgroundConfig = ref({
   value: 72,
@@ -34,6 +42,29 @@ function resetPlaygroundAnimation() {
   setTimeout(() => {
     playgroundConfig.value.value = 72
   }, 1000)
+}
+
+function copyConfig() {
+  const componentCode = `<script setup lang="ts">
+import Gauge from '@/components/ui/Gauge.vue'
+<\/script>
+
+<template>
+  <Gauge
+    :value="${playgroundConfig.value.value}"
+    :size="${playgroundConfig.value.size}"
+    :gap-percent="${playgroundConfig.value.gapPercent}"
+    :stroke-width="${playgroundConfig.value.strokeWidth}"
+    variant="${playgroundConfig.value.variant}"
+    primary="${playgroundConfig.value.primary}"
+    secondary="${playgroundConfig.value.secondary}"
+    :show-value="${playgroundConfig.value.showValue}"
+    :show-animation="${playgroundConfig.value.showAnimation}"
+  />
+<\/template>`
+
+  navigator.clipboard.writeText(componentCode)
+  toast.success('Ready-to-use Gauge component has been copied to clipboard')
 }
 </script>
 <template>
@@ -161,6 +192,12 @@ function resetPlaygroundAnimation() {
             </div>
           </div>
         </div>
+        <CardAction class="w-full">
+          <Button class="w-full" @click="copyConfig">
+            <Copy class="w-4 h-4 mr-2" />
+            Copy Config
+          </Button>
+        </CardAction>
       </Card>
     </div>
   </section>
