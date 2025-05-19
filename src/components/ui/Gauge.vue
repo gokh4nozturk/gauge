@@ -96,7 +96,7 @@ const containerStyle = computed(() => ({
   height: `${computedSize.value}px`,
 }))
 
-const valueFontSize = computed(() => `${Math.max(computedSize.value / 4, 10)}px`)
+const valueFontSize = computed(() => `${Math.max(computedSize.value / 2.5, 16)}px`)
 const valueFontColor = computed(() => '#000')
 
 // SVG configurations
@@ -245,13 +245,16 @@ watch(
         fill="none"
       />
 
+      <!-- Value Background Circle -->
+      <circle v-if="showValue" cx="60" cy="60" :r="radius / 2.5" fill="white" opacity="0.9" />
+
       <!-- Value Text -->
       <motion.text
         v-if="showValue"
         x="60"
         y="66"
         text-anchor="middle"
-        class="gauge-value font-medium select-none"
+        class="gauge-value font-semibold select-none"
         :style="{ fontSize: valueFontSize, fill: valueFontColor }"
         :initial="props.showAnimation ? { opacity: 0, scale: 0.8 } : {}"
         :animate="valueTextAnimation"
