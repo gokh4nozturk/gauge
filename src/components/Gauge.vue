@@ -33,6 +33,10 @@ const props = defineProps({
     type: Boolean,
     default: false,
   },
+  animationDuration: {
+    type: Number,
+    default: 1.5,
+  },
   primary: {
     type: [String, Array, Object],
     default: () => null,
@@ -92,7 +96,7 @@ const foregroundAnimation = computed(() => {
   return {
     strokeDashoffset: offset,
     transition: {
-      duration: props.showAnimation ? 1 : 0,
+      duration: props.showAnimation ? props.animationDuration : 0,
       ease: 'easeInOut',
     },
   }
@@ -223,7 +227,7 @@ watch(
         x="60"
         y="66"
         text-anchor="middle"
-        class="font-medium"
+        class="font-medium shrink-0"
         :style="{ fontSize: valueFontSize, fill: valueFontColor }"
         :initial="props.showAnimation ? { opacity: 0, scale: 0.8 } : {}"
         :animate="{ opacity: 1, scale: 1 }"

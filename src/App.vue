@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
 import GaugeSetup from './components/GaugeSetup.vue'
+import { Button } from '@/components/ui/button'
 
 const interactiveValue = ref(50)
 const animatedGauge = reactive({
@@ -21,25 +22,25 @@ function replayAnimation() {
 </script>
 
 <template>
-  <div class="max-w-[900px] mx-auto p-5 bg-white rounded-lg shadow-sm">
-    <h1 class="text-center mb-10 text-[#2c3e50]">Gauge Component Examples</h1>
+  <div class="max-w-[900px] mx-auto p-5 rounded-lg shadow-sm">
+    <h1 class="text-center mb-10">Gauge Component Examples</h1>
 
-    <div class="mb-10 p-5 bg-[#fcfcfc] rounded-lg">
-      <h2 class="mt-0 text-[#2c3e50] border-b border-gray-200 pb-2">Default</h2>
+    <div class="mb-10 p-5 bg-background/80 rounded-lg">
+      <h2 class="mt-0 border-b pb-2">Default</h2>
       <div class="flex flex-wrap gap-5 items-center justify-center mt-5">
         <GaugeSetup :value="42" />
       </div>
     </div>
 
-    <div class="mb-10 p-5 bg-[#fcfcfc] rounded-lg">
-      <h2 class="mt-0 text-[#2c3e50] border-b border-gray-200 pb-2">With Value Display</h2>
+    <div class="mb-10 p-5 bg-background/80 rounded-lg">
+      <h2 class="mt-0 border-b pb-2">With Value Display</h2>
       <div class="flex flex-wrap gap-5 items-center justify-center mt-5">
         <GaugeSetup :value="75" :show-value="true" />
       </div>
     </div>
 
-    <div class="mb-10 p-5 bg-[#fcfcfc] rounded-lg">
-      <h2 class="mt-0 text-[#2c3e50] border-b border-gray-200 pb-2">Different Sizes</h2>
+    <div class="mb-10 p-5 bg-background/80 rounded-lg">
+      <h2 class="mt-0 border-b pb-2">Different Sizes</h2>
       <div class="flex flex-wrap gap-5 items-center justify-center mt-5">
         <GaugeSetup :value="20" size="xs" />
         <GaugeSetup :value="40" size="sm" />
@@ -48,8 +49,8 @@ function replayAnimation() {
       </div>
     </div>
 
-    <div class="mb-10 p-5 bg-[#fcfcfc] rounded-lg">
-      <h2 class="mt-0 text-[#2c3e50] border-b border-gray-200 pb-2">Different Variants</h2>
+    <div class="mb-10 p-5 bg-background/80 rounded-lg">
+      <h2 class="mt-0 border-b pb-2">Different Variants</h2>
       <div class="flex flex-wrap gap-5 items-center justify-center mt-5">
         <div class="flex flex-col items-center text-center">
           <p class="mt-0 mb-2.5 font-medium">Ascending</p>
@@ -62,8 +63,8 @@ function replayAnimation() {
       </div>
     </div>
 
-    <div class="mb-10 p-5 bg-[#fcfcfc] rounded-lg">
-      <h2 class="mt-0 text-[#2c3e50] border-b border-gray-200 pb-2">Custom Colors</h2>
+    <div class="mb-10 p-5 bg-background/80 rounded-lg">
+      <h2 class="mt-0 border-b pb-2">Custom Colors</h2>
       <div class="flex flex-wrap gap-5 items-center justify-center mt-5">
         <GaugeSetup :value="25" primary="#ff5733" secondary="#f2f2f2" :show-value="true" />
         <GaugeSetup :value="50" primary="#33a8ff" secondary="#f2f2f2" :show-value="true" />
@@ -71,8 +72,8 @@ function replayAnimation() {
       </div>
     </div>
 
-    <div class="mb-10 p-5 bg-[#fcfcfc] rounded-lg">
-      <h2 class="mt-0 text-[#2c3e50] border-b border-gray-200 pb-2">With Animation</h2>
+    <div class="mb-10 p-5 bg-background/80 rounded-lg">
+      <h2 class="mt-0 border-b pb-2">With Animation</h2>
       <div class="flex flex-wrap gap-5 items-center justify-center mt-5">
         <GaugeSetup
           :value="animatedGauge.value"
@@ -80,17 +81,12 @@ function replayAnimation() {
           :show-value="true"
           size="lg"
         />
-        <button
-          class="bg-[#3498db] text-white border-none rounded px-4 py-2 cursor-pointer text-sm mt-2.5 transition-colors hover:bg-[#2980b9]"
-          @click="replayAnimation"
-        >
-          Replay Animation
-        </button>
+        <Button @click="replayAnimation"> Replay Animation </Button>
       </div>
     </div>
 
-    <div class="mb-10 p-5 bg-[#fcfcfc] rounded-lg">
-      <h2 class="mt-0 text-[#2c3e50] border-b border-gray-200 pb-2">Interactive</h2>
+    <div class="mb-10 p-5 bg-background/80 rounded-lg">
+      <h2 class="mt-0 border-b pb-2">Interactive</h2>
       <div class="flex flex-wrap gap-5 items-center justify-center mt-5">
         <GaugeSetup :value="interactiveValue" :show-value="true" size="lg" />
         <div class="flex flex-col items-center mt-2.5 gap-2">
