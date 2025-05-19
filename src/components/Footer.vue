@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { motion, useAnimationControls } from 'motion-v'
+import { useRouter } from 'vue-router'
 
+const router = useRouter()
 const controls = useAnimationControls()
 
 const pathVariants = {
@@ -30,6 +32,7 @@ function openGitHub() {
 
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' })
+  router.push('/')
 }
 
 function handleMouseEnter() {

@@ -18,7 +18,11 @@ const router = createRouter({
     if (savedPosition) {
       return savedPosition
     } else if (to.hash) {
-      return { el: to.hash, behavior: 'smooth' }
+      return {
+        el: to.hash,
+        behavior: 'smooth',
+        top: 80, // Adding a top offset when scrolling to hash links
+      }
     }
   },
 })

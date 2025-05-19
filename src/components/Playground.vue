@@ -68,9 +68,11 @@ import Gauge from '@/components/ui/Gauge.vue'
 }
 </script>
 <template>
-  <section class="mt-20 mb-10">
-    <h2 class="text-3xl font-bold mb-8 text-center">Playground</h2>
-    <p class="text-center text-lg mb-12">Play with the configuration of the Gauge</p>
+  <section class="mt-20 mb-10 border-t pt-8" id="playground">
+    <h2 class="text-3xl font-bold mb-4 text-center">Playground</h2>
+    <p class="text-center text-lg mb-6 text-muted-foreground">
+      Play with the configuration of the Gauge
+    </p>
 
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
       <!-- Gauge Preview -->
@@ -98,8 +100,8 @@ import Gauge from '@/components/ui/Gauge.vue'
 
       <!-- Controls -->
       <Card class="p-6 border rounded-lg lg:col-span-1">
-        <CardTitle class="text-xl font-semibold mb-6">Gauge Config</CardTitle>
-        <CardDescription class="mb-6">Customize your Gauge</CardDescription>
+        <CardTitle class="text-xl font-semibold">Gauge Config</CardTitle>
+        <CardDescription>Customize your Gauge</CardDescription>
 
         <div class="space-y-6">
           <!-- Toggle Options -->
@@ -173,20 +175,12 @@ import Gauge from '@/components/ui/Gauge.vue'
             <div class="space-y-2">
               <Label>Primary</Label>
               <div class="flex items-center space-x-2">
-                <div
-                  class="w-6 h-6 rounded-full border"
-                  :style="{ backgroundColor: playgroundConfig.primary }"
-                ></div>
                 <Input type="color" v-model="playgroundConfig.primary" class="w-full h-10" />
               </div>
             </div>
             <div class="space-y-2">
               <Label>Secondary</Label>
               <div class="flex items-center space-x-2">
-                <div
-                  class="w-6 h-6 rounded-full border"
-                  :style="{ backgroundColor: playgroundConfig.secondary }"
-                ></div>
                 <Input type="color" v-model="playgroundConfig.secondary" class="w-full h-10" />
               </div>
             </div>
