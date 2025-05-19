@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import Gauge from './Gauge.vue'
+import Button from './button/Button.vue'
 
 const value = ref(50)
 const animating = ref(true)
+const animationValue = ref(72)
 
 function randomizeValue() {
   value.value = Math.floor(Math.random() * 101)
@@ -14,9 +16,9 @@ function toggleAnimation() {
 }
 
 function resetAnimation() {
-  value.value = 0
+  animationValue.value = 0
   setTimeout(() => {
-    value.value = 72
+    animationValue.value = 72
   }, 100)
 }
 </script>
@@ -48,6 +50,32 @@ function resetAnimation() {
       </div>
 
       <div class="p-4 border rounded-lg flex flex-col items-center">
+        <h2 class="text-lg font-medium mb-4">Arc Priority</h2>
+        <div class="flex items-center space-x-4">
+          <div class="flex flex-col items-center">
+            <span class="text-sm mb-2">48</span>
+            <Gauge :value="48" :size="60" :show-value="true" />
+          </div>
+          <div class="flex flex-col items-center">
+            <span class="text-sm mb-2">49</span>
+            <Gauge :value="49" :size="60" :show-value="true" />
+          </div>
+          <div class="flex flex-col items-center">
+            <span class="text-sm mb-2">50</span>
+            <Gauge :value="50" :size="60" :show-value="true" />
+          </div>
+          <div class="flex flex-col items-center">
+            <span class="text-sm mb-2">51</span>
+            <Gauge :value="51" :size="60" :show-value="true" />
+          </div>
+          <div class="flex flex-col items-center">
+            <span class="text-sm mb-2">52</span>
+            <Gauge :value="52" :size="60" :show-value="true" />
+          </div>
+        </div>
+      </div>
+
+      <div class="p-4 border rounded-lg flex flex-col items-center">
         <h2 class="text-lg font-medium mb-4">Different Variants</h2>
         <div class="flex items-center space-x-16">
           <div class="flex flex-col items-center">
@@ -74,25 +102,17 @@ function resetAnimation() {
         <h2 class="text-lg font-medium mb-4">With Animation</h2>
         <div class="flex flex-col items-center space-y-4">
           <Gauge
-            :value="72"
+            :value="animationValue"
             :show-animation="animating"
             :show-value="true"
             primary="#22c55e"
             :size="80"
           />
           <div class="flex space-x-4">
-            <button
-              class="px-4 py-2 bg-slate-800 text-white rounded hover:bg-slate-700 transition-colors"
-              @click="toggleAnimation"
-            >
+            <Button @click="toggleAnimation">
               {{ animating ? 'Disable' : 'Enable' }} Animation
-            </button>
-            <button
-              class="px-4 py-2 bg-slate-800 text-white rounded hover:bg-slate-700 transition-colors"
-              @click="resetAnimation"
-            >
-              Replay Animation
-            </button>
+            </Button>
+            <Button @click="resetAnimation"> Replay Animation </Button>
           </div>
         </div>
       </div>
