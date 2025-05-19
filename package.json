@@ -20,6 +20,7 @@
     "@tailwindcss/vite": "^4.1.7",
     "@tanstack/vue-table": "^8.21.3",
     "@unhead/vue": "2.0.9",
+    "@vercel/analytics": "^1.5.0",
     "@vueuse/core": "^13.2.0",
     "@vueuse/head": "^2.0.0",
     "class-variance-authority": "^0.7.1",
