@@ -1,5 +1,13 @@
 <script setup lang="ts">
-import { ref, computed, type CSSProperties, type SVGAttributes, onMounted, watch } from 'vue'
+import {
+  ref,
+  computed,
+  type CSSProperties,
+  type SVGAttributes,
+  onMounted,
+  watch,
+  type ComputedRef,
+} from 'vue'
 
 import {
   calculatePrimaryOpacity,
@@ -75,7 +83,7 @@ const isEqual = computed(
 const offsetFactor = computed(() => (isEqual.value ? 0.5 : 0))
 const offsetFactorSecondary = computed(() => 1 - offsetFactor.value)
 
-const circleStyles: CSSProperties = {
+const circleStyles: ComputedRef<CSSProperties> = computed(() => ({
   ...(showAnimation
     ? {
         transitionProperty: 'stroke-dasharray, transform, stroke, opacity',
@@ -85,9 +93,9 @@ const circleStyles: CSSProperties = {
       }
     : {}),
   transformOrigin: '50% 50%',
-}
+}))
 
-const circleProps: SVGAttributes = {
+const circleProps: ComputedRef<SVGAttributes> = computed(() => ({
   cx: circleSize / 2,
   cy: circleSize / 2,
   r: radius,
@@ -96,7 +104,7 @@ const circleProps: SVGAttributes = {
   'stroke-dashoffset': 0,
   'stroke-width': strokeWidth,
   'shape-rendering': 'geometricPrecision',
-}
+}))
 
 const primaryStrokeDasharray = computed(() =>
   calculatePrimaryStrokeDasharray(
