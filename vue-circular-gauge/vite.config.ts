@@ -3,13 +3,17 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import dts from 'vite-plugin-dts'
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [
     vue(),
     dts({
       include: ['src/**/*.ts', 'src/**/*.vue'],
-      tsconfigPath: resolve(__dirname, 'tsconfig.json'),
+      beforeWriteFile: (filePath, content) => {
+        return {
+          filePath,
+          content,
+        }
+      },
     }),
   ],
   build: {
@@ -28,9 +32,11 @@ export default defineConfig({
       },
     },
     sourcemap: true,
+    // Reduce bloat from dependencies
     commonjsOptions: {
       include: [/node_modules/],
     },
+    // Ensure that terser doesn't discard license comments
     minify: 'terser',
     terserOptions: {
       format: {

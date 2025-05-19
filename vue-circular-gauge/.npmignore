@@ -1,0 +1,25 @@
+# Source files
+src/demo
+src/**/*.spec.ts
+src/**/*.test.ts
+
+# Config files
+.prettierrc
+.eslintrc
+.editorconfig
+tsconfig.json
+tsconfig.node.json
+vite.config.ts
+vitest.config.ts
+
+# Other files
+.vscode
+coverage
+node_modules
+.github
+.git
+.gitignore
+*.log
+pnpm-lock.yaml
+yarn.lock
+package-lock.json 
