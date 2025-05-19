@@ -45,11 +45,7 @@ function resetPlaygroundAnimation() {
 }
 
 function copyConfig() {
-  const componentCode = `<script setup lang="ts">
-import Gauge from '@/components/ui/Gauge.vue'
-<\/script>
-
-<template>
+  const componentCode = `
   <Gauge
     :value="${playgroundConfig.value.value}"
     :size="${playgroundConfig.value.size}"
@@ -60,8 +56,7 @@ import Gauge from '@/components/ui/Gauge.vue'
     secondary="${playgroundConfig.value.secondary}"
     :show-value="${playgroundConfig.value.showValue}"
     :show-animation="${playgroundConfig.value.showAnimation}"
-  />
-<\/template>`
+  />`
 
   navigator.clipboard.writeText(componentCode)
   toast.success('Ready-to-use Gauge component has been copied to clipboard')
