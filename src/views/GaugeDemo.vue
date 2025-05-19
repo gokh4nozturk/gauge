@@ -31,9 +31,9 @@ function resetAnimation() {
 
 <template>
   <main class="space-y-10">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-      <Card class="p-4 border rounded-lg flex flex-col items-center">
-        <CardTitle class="text-lg font-medium mb-4 text-center">Default</CardTitle>
+    <div class="grid grid-cols-1 gap-10 md:grid-cols-2">
+      <Card class="flex flex-col items-center rounded-lg border p-4">
+        <CardTitle class="mb-4 text-center text-lg font-medium">Default</CardTitle>
         <CardContent class="flex flex-col items-center text-center">
           <Gauge :value="value" :size="80" />
           <CardDescription class="mt-4 text-sm text-gray-500">
@@ -42,8 +42,8 @@ function resetAnimation() {
         </CardContent>
       </Card>
 
-      <Card class="p-4 border rounded-lg flex flex-col items-center">
-        <CardTitle class="text-lg font-medium mb-4 text-center">With Value Display</CardTitle>
+      <Card class="flex flex-col items-center rounded-lg border p-4">
+        <CardTitle class="mb-4 text-center text-lg font-medium">With Value Display</CardTitle>
         <CardContent class="flex flex-col items-center text-center">
           <Gauge :value="value" :size="80" :show-value="true" />
           <CardDescription class="mt-4 text-sm text-gray-500">
@@ -52,24 +52,24 @@ function resetAnimation() {
         </CardContent>
       </Card>
 
-      <Card class="p-4 border rounded-lg flex flex-col items-center">
-        <CardTitle class="text-lg font-medium mb-4 text-center">Different Sizes</CardTitle>
+      <Card class="flex flex-col items-center rounded-lg border p-4">
+        <CardTitle class="mb-4 text-center text-lg font-medium">Different Sizes</CardTitle>
         <CardContent class="flex flex-col items-center text-center">
           <div class="flex items-center space-x-8">
             <div class="flex flex-col items-center">
-              <span class="text-sm mb-2">XS</span>
+              <span class="mb-2 text-sm">XS</span>
               <Gauge :value="value" size="xs" primary="#e11d48" />
             </div>
             <div class="flex flex-col items-center">
-              <span class="text-sm mb-2">SM</span>
+              <span class="mb-2 text-sm">SM</span>
               <Gauge :value="value" size="sm" primary="#f59e0b" />
             </div>
             <div class="flex flex-col items-center">
-              <span class="text-sm mb-2">MD</span>
+              <span class="mb-2 text-sm">MD</span>
               <Gauge :value="value" size="md" primary="#3b82f6" />
             </div>
             <div class="flex flex-col items-center">
-              <span class="text-sm mb-2">LG</span>
+              <span class="mb-2 text-sm">LG</span>
               <Gauge :value="value" size="lg" primary="#22c55e" />
             </div>
           </div>
@@ -79,28 +79,28 @@ function resetAnimation() {
         </CardContent>
       </Card>
 
-      <Card class="p-4 border rounded-lg flex flex-col items-center">
-        <CardTitle class="text-lg font-medium mb-4 text-center">Arc Priority</CardTitle>
+      <Card class="flex flex-col items-center rounded-lg border p-4">
+        <CardTitle class="mb-4 text-center text-lg font-medium">Arc Priority</CardTitle>
         <CardContent class="flex flex-col items-center text-center">
           <div class="flex items-center space-x-4">
             <div class="flex flex-col items-center">
-              <span class="text-sm mb-2">48</span>
+              <span class="mb-2 text-sm">48</span>
               <Gauge :value="48" :size="60" :show-value="true" />
             </div>
             <div class="flex flex-col items-center">
-              <span class="text-sm mb-2">49</span>
+              <span class="mb-2 text-sm">49</span>
               <Gauge :value="49" :size="60" :show-value="true" />
             </div>
             <div class="flex flex-col items-center">
-              <span class="text-sm mb-2">50</span>
+              <span class="mb-2 text-sm">50</span>
               <Gauge :value="50" :size="60" :show-value="true" />
             </div>
             <div class="flex flex-col items-center">
-              <span class="text-sm mb-2">51</span>
+              <span class="mb-2 text-sm">51</span>
               <Gauge :value="51" :size="60" :show-value="true" />
             </div>
             <div class="flex flex-col items-center">
-              <span class="text-sm mb-2">52</span>
+              <span class="mb-2 text-sm">52</span>
               <Gauge :value="52" :size="60" :show-value="true" />
             </div>
           </div>
@@ -110,16 +110,16 @@ function resetAnimation() {
         </CardContent>
       </Card>
 
-      <Card class="p-4 border rounded-lg flex flex-col items-center">
-        <CardTitle class="text-lg font-medium mb-4 text-center">Different Variants</CardTitle>
+      <Card class="flex flex-col items-center rounded-lg border p-4">
+        <CardTitle class="mb-4 text-center text-lg font-medium">Different Variants</CardTitle>
         <CardContent class="flex flex-col items-center text-center">
-          <div class="flex items-center justify-center space-x-16 w-full">
+          <div class="flex w-full items-center justify-center space-x-16">
             <div class="flex flex-col items-center">
-              <span class="text-sm mb-2">Ascending</span>
+              <span class="mb-2 text-sm">Ascending</span>
               <Gauge :value="value" :size="80" variant="ascending" primary="#f59e0b" />
             </div>
             <div class="flex flex-col items-center">
-              <span class="text-sm mb-2">Descending</span>
+              <span class="mb-2 text-sm">Descending</span>
               <Gauge :value="value" :size="80" variant="descending" primary="#f59e0b" />
             </div>
           </div>
@@ -129,20 +129,20 @@ function resetAnimation() {
         </CardContent>
       </Card>
 
-      <Card class="p-4 border rounded-lg flex flex-col items-center">
-        <CardTitle class="text-lg font-medium mb-4 text-center">Vue.js Colors</CardTitle>
+      <Card class="flex flex-col items-center rounded-lg border p-4">
+        <CardTitle class="mb-4 text-center text-lg font-medium">Vue.js Colors</CardTitle>
         <CardContent class="flex flex-col items-center text-center">
-          <div class="flex items-center justify-center space-x-8 w-full">
+          <div class="flex w-full items-center justify-center space-x-8">
             <div class="flex flex-col items-center">
-              <span class="text-sm mb-2">Vue Green</span>
+              <span class="mb-2 text-sm">Vue Green</span>
               <Gauge :value="value" :size="80" :primary="vueGreen" secondary="#dcfce7" />
             </div>
             <div class="flex flex-col items-center">
-              <span class="text-sm mb-2">Vue Dark</span>
+              <span class="mb-2 text-sm">Vue Dark</span>
               <Gauge :value="value" :size="80" :primary="vueDark" secondary="#e2e8f0" />
             </div>
             <div class="flex flex-col items-center">
-              <span class="text-sm mb-2">Combined</span>
+              <span class="mb-2 text-sm">Combined</span>
               <Gauge
                 :value="value"
                 :size="80"
@@ -158,10 +158,10 @@ function resetAnimation() {
         </CardContent>
       </Card>
 
-      <Card class="p-4 border rounded-lg flex flex-col items-center">
-        <CardTitle class="text-lg font-medium mb-4 text-center">Custom Colors</CardTitle>
+      <Card class="flex flex-col items-center rounded-lg border p-4">
+        <CardTitle class="mb-4 text-center text-lg font-medium">Custom Colors</CardTitle>
         <CardContent class="flex flex-col items-center text-center">
-          <div class="flex items-center justify-center space-x-8 w-full">
+          <div class="flex w-full items-center justify-center space-x-8">
             <Gauge :value="value" :size="60" primary="#e11d48" secondary="#fee2e2" />
             <Gauge :value="value" :size="60" primary="#3b82f6" secondary="#dbeafe" />
             <Gauge :value="value" :size="60" primary="#22c55e" secondary="#dcfce7" />
@@ -172,8 +172,8 @@ function resetAnimation() {
         </CardContent>
       </Card>
 
-      <Card class="p-4 border rounded-lg flex flex-col items-center">
-        <CardTitle class="text-lg font-medium mb-4 text-center">With Animation</CardTitle>
+      <Card class="flex flex-col items-center rounded-lg border p-4">
+        <CardTitle class="mb-4 text-center text-lg font-medium">With Animation</CardTitle>
         <CardContent class="flex flex-col items-center text-center">
           <div class="flex flex-col items-center space-y-4">
             <Gauge
@@ -196,15 +196,15 @@ function resetAnimation() {
         </CardContent>
       </Card>
 
-      <Card class="p-4 border rounded-lg flex flex-col items-center">
-        <CardTitle class="text-lg font-medium mb-4 text-center">Interactive</CardTitle>
+      <Card class="flex flex-col items-center rounded-lg border p-4">
+        <CardTitle class="mb-4 text-center text-lg font-medium">Interactive</CardTitle>
         <CardContent class="flex flex-col items-center text-center">
           <div class="flex flex-col items-center space-y-4">
             <Gauge :value="value" :show-value="true" :primary="vueGreen" :size="80" />
-            <div class="flex items-center w-full max-w-xs space-x-4">
+            <div class="flex w-full max-w-xs items-center space-x-4">
               <span class="text-sm">Value:</span>
               <input type="range" v-model="value" min="0" max="100" class="w-full" />
-              <span class="text-sm w-8">{{ value }}</span>
+              <span class="w-8 text-sm">{{ value }}</span>
             </div>
             <Button variant="outline" @click="randomizeValue"> Random Value </Button>
           </div>
@@ -214,22 +214,22 @@ function resetAnimation() {
         </CardContent>
       </Card>
 
-      <Card class="p-4 border rounded-lg flex flex-col items-center">
-        <CardTitle class="text-lg font-medium mb-4 text-center"
+      <Card class="flex flex-col items-center rounded-lg border p-4">
+        <CardTitle class="mb-4 text-center text-lg font-medium"
           >Different Gap Percentages</CardTitle
         >
         <CardContent class="flex flex-col items-center text-center">
-          <div class="flex items-center justify-center space-x-8 w-full">
+          <div class="flex w-full items-center justify-center space-x-8">
             <div class="flex flex-col items-center">
-              <span class="text-sm mb-2">5%</span>
+              <span class="mb-2 text-sm">5%</span>
               <Gauge :value="value" :size="60" :gap-percent="5" />
             </div>
             <div class="flex flex-col items-center">
-              <span class="text-sm mb-2">10%</span>
+              <span class="mb-2 text-sm">10%</span>
               <Gauge :value="value" :size="60" :gap-percent="10" />
             </div>
             <div class="flex flex-col items-center">
-              <span class="text-sm mb-2">20%</span>
+              <span class="mb-2 text-sm">20%</span>
               <Gauge :value="value" :size="60" :gap-percent="20" />
             </div>
           </div>

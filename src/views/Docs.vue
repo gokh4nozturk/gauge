@@ -131,9 +131,9 @@ function copyCustomExample() {
     <section>
       <h1 class="text-3xl font-bold">{{ title }}</h1>
 
-      <p class="text-base text-gray-700 dark:text-gray-300 mt-2">
+      <p class="mt-2 text-base text-gray-700 dark:text-gray-300">
         The Gauge component only requires the
-        <code class="bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">value</code> prop and
+        <code class="rounded bg-gray-100 px-1 py-0.5 dark:bg-gray-800">value</code> prop and
         supports many props to customize it according to your needs.
       </p>
     </section>
@@ -146,7 +146,7 @@ function copyCustomExample() {
             <TableRow>
               <TableHead class="w-[140px]">Property</TableHead>
               <TableHead>Description</TableHead>
-              <TableHead class="text-right w-[120px]">Default</TableHead>
+              <TableHead class="w-[120px] text-right">Default</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -154,7 +154,7 @@ function copyCustomExample() {
               <TableCell class="font-medium">{{ prop.property }}</TableCell>
               <TableCell>{{ prop.description }}</TableCell>
               <TableCell class="text-right">
-                <code class="text-sm bg-gray-100 dark:bg-gray-800 px-1 py-0.5 rounded">
+                <code class="rounded bg-gray-100 px-1 py-0.5 text-sm dark:bg-gray-800">
                   {{ prop.default }}
                 </code>
               </TableCell>
@@ -178,7 +178,7 @@ function copyCustomExample() {
                 :exit="{ opacity: 0, y: -10 }"
                 :transition="{ duration: 0.2 }"
               >
-                <Copy class="w-4 h-4" />
+                <Copy class="h-4 w-4" />
               </motion.div>
               <motion.div
                 v-else
@@ -188,7 +188,7 @@ function copyCustomExample() {
                 :exit="{ opacity: 0, y: 10 }"
                 :transition="{ duration: 0.2 }"
               >
-                <Check class="w-4 h-4 text-emerald-500" />
+                <Check class="h-4 w-4 text-emerald-500" />
               </motion.div>
             </AnimatePresence>
           </Button>
@@ -214,7 +214,7 @@ function copyCustomExample() {
                 :exit="{ opacity: 0, y: -10 }"
                 :transition="{ duration: 0.2 }"
               >
-                <Copy class="w-4 h-4" />
+                <Copy class="h-4 w-4" />
               </motion.div>
               <motion.div
                 v-else
@@ -224,7 +224,7 @@ function copyCustomExample() {
                 :exit="{ opacity: 0, y: 10 }"
                 :transition="{ duration: 0.2 }"
               >
-                <Check class="w-4 h-4 text-emerald-500" />
+                <Check class="h-4 w-4 text-emerald-500" />
               </motion.div>
             </AnimatePresence>
           </Button>

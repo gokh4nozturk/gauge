@@ -44,10 +44,10 @@ function handleMouseLeave() {
 }
 </script>
 <template>
-  <footer class="bg-background h-44 text-muted-foreground relative border-t mt-10">
-    <div class="flex flex-col justify-center items-center h-full gap-2">
+  <footer class="bg-background text-muted-foreground relative mt-10 h-44 border-t">
+    <div class="flex h-full flex-col items-center justify-center gap-2">
       <p>© {{ new Date().getFullYear() }} Gauge. All rights reserved.</p>
-      <Button variant="link" class="text-sm p-0" as-child>
+      <Button variant="link" class="p-0 text-sm" as-child>
         Made with ❤️ by
         <a href="https://github.com/gokh4nozturk?ref=gauge-component" target="_blank"
           >gokh4nozturk</a
@@ -55,7 +55,7 @@ function handleMouseLeave() {
       </Button>
     </div>
     <button
-      class="absolute top-1/2 -translate-y-1/2 right-0 bg-accent rounded-full p-2 hover:bg-accent/80 transition-colors"
+      class="bg-accent hover:bg-accent/80 absolute top-1/2 right-0 -translate-y-1/2 rounded-full p-2 transition-colors"
       @click="scrollToTop"
       @mouseenter="handleMouseEnter"
       @mouseleave="handleMouseLeave"

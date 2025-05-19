@@ -64,14 +64,14 @@ function copyConfig() {
 </script>
 <template>
   <section class="mt-20 border-t pt-8" id="playground">
-    <h2 class="text-3xl font-bold mb-4 text-center">Playground</h2>
-    <p class="text-center text-lg mb-6 text-muted-foreground">
+    <h2 class="mb-4 text-center text-3xl font-bold">Playground</h2>
+    <p class="text-muted-foreground mb-6 text-center text-lg">
       Play with the configuration of the Gauge
     </p>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+    <div class="grid grid-cols-1 gap-10 lg:grid-cols-2">
       <!-- Gauge Preview -->
-      <Card class="p-6 border rounded-lg grid grid-rows-[1fr_auto] place-items-center col-span-1">
+      <Card class="col-span-1 grid grid-rows-[1fr_auto] place-items-center rounded-lg border p-6">
         <CardContent>
           <Gauge
             :value="playgroundConfig.value"
@@ -87,20 +87,20 @@ function copyConfig() {
         </CardContent>
         <CardFooter class="w-full">
           <Button class="w-full" variant="outline" @click="resetPlaygroundAnimation">
-            <RotateCw class="w-4 h-4 mr-2" />
+            <RotateCw class="mr-2 h-4 w-4" />
             Replay Animation
           </Button>
         </CardFooter>
       </Card>
 
       <!-- Controls -->
-      <Card class="p-6 border rounded-lg lg:col-span-1">
+      <Card class="rounded-lg border p-6 lg:col-span-1">
         <CardTitle class="text-xl font-semibold">Gauge Config</CardTitle>
         <CardDescription>Customize your Gauge</CardDescription>
 
         <div class="space-y-6">
           <!-- Toggle Options -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div class="items-top flex gap-x-2">
               <Checkbox id="showValue" v-model="playgroundConfig.showValue" />
               <div class="grid gap-1.5 leading-none">
@@ -166,24 +166,24 @@ function copyConfig() {
           </div>
 
           <!-- Colors -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div class="space-y-2">
               <Label>Primary</Label>
               <div class="flex items-center space-x-2">
-                <Input type="color" v-model="playgroundConfig.primary" class="w-full h-10" />
+                <Input type="color" v-model="playgroundConfig.primary" class="h-10 w-full" />
               </div>
             </div>
             <div class="space-y-2">
               <Label>Secondary</Label>
               <div class="flex items-center space-x-2">
-                <Input type="color" v-model="playgroundConfig.secondary" class="w-full h-10" />
+                <Input type="color" v-model="playgroundConfig.secondary" class="h-10 w-full" />
               </div>
             </div>
           </div>
         </div>
         <CardAction class="w-full">
           <Button class="w-full" @click="copyConfig">
-            <Copy class="w-4 h-4 mr-2" />
+            <Copy class="mr-2 h-4 w-4" />
             Copy Config
           </Button>
         </CardAction>
