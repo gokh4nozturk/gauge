@@ -1,5 +1,29 @@
 <script setup lang="ts">
+import CodeBlock from '@/components/ui/CodeBlock.vue'
+
 const title = 'Gauge Documentation'
+
+const basicUsageCode = `<script setup lang="ts">
+import { Gauge } from '@/components/Gauge'
+<\/script>
+
+<template>
+  <Gauge :value="75" />
+</template>`
+
+const customExampleCode = `<script setup lang="ts">
+import { Gauge } from '@/components/Gauge'
+<\/script>
+
+<template>
+  <Gauge
+    :value="42"
+    size="xl"
+    :strokeWidth="15"
+    :showValue="true"
+    :showAnimation="true"
+  />
+</template>`
 </script>
 
 <template>
@@ -142,43 +166,16 @@ const title = 'Gauge Documentation'
 
     <section class="mt-12">
       <h2 class="text-2xl font-semibold mb-4">Basic Usage</h2>
-      <pre
-        class="bg-gray-100 p-4 rounded-lg overflow-x-auto text-sm"
-      ><code>&lt;script setup lang="ts"&gt;
-import { Gauge } from '@/components/Gauge'
-&lt;/script&gt;
-
-&lt;template&gt;
-  &lt;Gauge :value="75" /&gt;
-&lt;/template&gt;
-</code></pre>
+      <div class="bg-gray-100 p-4 rounded-lg overflow-x-auto">
+        <CodeBlock :code="basicUsageCode" language="vue" />
+      </div>
     </section>
 
     <section class="mt-8">
       <h2 class="text-2xl font-semibold mb-4">Custom Example</h2>
-      <pre
-        class="bg-gray-100 p-4 rounded-lg overflow-x-auto text-sm"
-      ><code>&lt;script setup lang="ts"&gt;
-import { Gauge } from '@/components/Gauge'
-&lt;/script&gt;
-
-&lt;template&gt;
-  &lt;Gauge
-    :value="42"
-    size="xl"
-    :strokeWidth="15"
-    :showValue="true"
-    :showAnimation="true"
-  /&gt;
-&lt;/template&gt;
-</code></pre>
+      <div class="bg-gray-100 p-4 rounded-lg overflow-x-auto">
+        <CodeBlock :code="customExampleCode" language="vue" />
+      </div>
     </section>
-
-    <footer class="mt-16 pt-6 border-t border-gray-200 text-sm text-gray-600">
-      <p>Made with ❤️</p>
-      <p class="mt-1">
-        Inspired by Geist Design System from the Vercel team and by geist-gauge from Ajay.
-      </p>
-    </footer>
   </main>
 </template>

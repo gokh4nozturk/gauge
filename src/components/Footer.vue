@@ -32,7 +32,11 @@ function openGitHub() {
 
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' })
-  router.push('/')
+  if (router.currentRoute.value.name === 'docs') {
+    router.push({ name: 'docs' })
+  } else {
+    router.push({ name: 'home' })
+  }
 }
 
 function handleMouseEnter() {
