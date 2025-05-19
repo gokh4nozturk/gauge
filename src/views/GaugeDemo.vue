@@ -24,29 +24,47 @@ function resetAnimation() {
 </script>
 
 <template>
-  <div class="p-6 max-w-4xl mx-auto">
+  <div class="p-6 max-w-7xl mx-auto">
     <h1 class="text-2xl font-semibold mb-6">Gauge Component Examples</h1>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
       <div class="p-4 border rounded-lg flex flex-col items-center">
         <h2 class="text-lg font-medium mb-4">Default</h2>
         <Gauge :value="value" :size="80" />
+        <div class="mt-4 text-sm text-gray-500">Basic gauge with default settings</div>
       </div>
 
       <div class="p-4 border rounded-lg flex flex-col items-center">
         <h2 class="text-lg font-medium mb-4">With Value Display</h2>
         <Gauge :value="value" :size="80" :show-value="true" />
+        <div class="mt-4 text-sm text-gray-500">Shows the numerical value inside the gauge</div>
       </div>
 
       <div class="p-4 border rounded-lg flex flex-col items-center">
         <h2 class="text-lg font-medium mb-4">Different Sizes</h2>
         <div class="flex items-center space-x-8">
-          <Gauge :value="value" size="xs" primary="#e11d48" />
-          <Gauge :value="value" size="sm" primary="#f59e0b" />
-          <Gauge :value="value" size="md" primary="#3b82f6" />
-          <Gauge :value="value" size="lg" primary="#22c55e" />
-          <Gauge :value="value" :size="100" primary="#8b5cf6" />
+          <div class="flex flex-col items-center">
+            <span class="text-sm mb-2">XS</span>
+            <Gauge :value="value" size="xs" primary="#e11d48" />
+          </div>
+          <div class="flex flex-col items-center">
+            <span class="text-sm mb-2">SM</span>
+            <Gauge :value="value" size="sm" primary="#f59e0b" />
+          </div>
+          <div class="flex flex-col items-center">
+            <span class="text-sm mb-2">MD</span>
+            <Gauge :value="value" size="md" primary="#3b82f6" />
+          </div>
+          <div class="flex flex-col items-center">
+            <span class="text-sm mb-2">LG</span>
+            <Gauge :value="value" size="lg" primary="#22c55e" />
+          </div>
+          <div class="flex flex-col items-center">
+            <span class="text-sm mb-2">100px</span>
+            <Gauge :value="value" :size="100" primary="#8b5cf6" />
+          </div>
         </div>
+        <div class="mt-4 text-sm text-gray-500">Predefined and custom size options</div>
       </div>
 
       <div class="p-4 border rounded-lg flex flex-col items-center">
@@ -73,6 +91,7 @@ function resetAnimation() {
             <Gauge :value="52" :size="60" :show-value="true" />
           </div>
         </div>
+        <div class="mt-4 text-sm text-gray-500">Shows precision around the midpoint value</div>
       </div>
 
       <div class="p-4 border rounded-lg flex flex-col items-center">
@@ -87,6 +106,7 @@ function resetAnimation() {
             <Gauge :value="value" :size="80" variant="descending" primary="#f59e0b" />
           </div>
         </div>
+        <div class="mt-4 text-sm text-gray-500">Different filling directions for the gauge</div>
       </div>
 
       <div class="p-4 border rounded-lg flex flex-col items-center">
@@ -96,6 +116,7 @@ function resetAnimation() {
           <Gauge :value="value" :size="60" primary="#3b82f6" secondary="#dbeafe" />
           <Gauge :value="value" :size="60" primary="#22c55e" secondary="#dcfce7" />
         </div>
+        <div class="mt-4 text-sm text-gray-500">Customize primary and secondary colors</div>
       </div>
 
       <div class="p-4 border rounded-lg flex flex-col items-center">
@@ -109,12 +130,13 @@ function resetAnimation() {
             :size="80"
           />
           <div class="flex space-x-4">
-            <Button @click="toggleAnimation">
+            <Button variant="outline" @click="toggleAnimation">
               {{ animating ? 'Disable' : 'Enable' }} Animation
             </Button>
-            <Button @click="resetAnimation"> Replay Animation </Button>
+            <Button @click="resetAnimation">Replay Animation</Button>
           </div>
         </div>
+        <div class="mt-4 text-sm text-gray-500">Animated filling effect with controls</div>
       </div>
 
       <div class="p-4 border rounded-lg flex flex-col items-center">
@@ -126,13 +148,9 @@ function resetAnimation() {
             <input type="range" v-model="value" min="0" max="100" class="w-full" />
             <span class="text-sm w-8">{{ value }}</span>
           </div>
-          <button
-            class="px-4 py-2 bg-slate-800 text-white rounded hover:bg-slate-700 transition-colors"
-            @click="randomizeValue"
-          >
-            Random Value
-          </button>
+          <Button variant="outline" @click="randomizeValue"> Random Value </Button>
         </div>
+        <div class="mt-4 text-sm text-gray-500">Control the gauge value directly</div>
       </div>
 
       <div class="p-4 border rounded-lg flex flex-col items-center">
@@ -151,6 +169,7 @@ function resetAnimation() {
             <Gauge :value="value" :size="60" :gap-percent="20" />
           </div>
         </div>
+        <div class="mt-4 text-sm text-gray-500">Adjust the opening at the bottom of the gauge</div>
       </div>
     </div>
   </div>
