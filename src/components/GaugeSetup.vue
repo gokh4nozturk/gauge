@@ -18,8 +18,8 @@ interface Props {
 // Props definition with defaults
 const props = withDefaults(defineProps<Props>(), {
   size: 'md',
-  gapPercent: 5,
-  strokeWidth: 10,
+  gapPercent: 8,
+  strokeWidth: 14,
   variant: 'ascending',
   showValue: false,
   showAnimation: false,

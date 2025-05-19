@@ -13,11 +13,11 @@ const props = defineProps({
   },
   gapPercent: {
     type: Number,
-    default: 5,
+    default: 8,
   },
   strokeWidth: {
     type: Number,
-    default: 10,
+    default: 14,
   },
   variant: {
     type: String,

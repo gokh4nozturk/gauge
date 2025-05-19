@@ -41,12 +41,10 @@ function replayAnimation() {
     <div class="mb-10 p-5 bg-[#fcfcfc] rounded-lg">
       <h2 class="mt-0 text-[#2c3e50] border-b border-gray-200 pb-2">Different Sizes</h2>
       <div class="flex flex-wrap gap-5 items-center justify-center mt-5">
-        <GaugeSetup :value="60" size="xs" />
-        <GaugeSetup :value="60" size="sm" />
+        <GaugeSetup :value="20" size="xs" />
+        <GaugeSetup :value="40" size="sm" />
         <GaugeSetup :value="60" size="md" />
-        <GaugeSetup :value="60" size="lg" />
-        <GaugeSetup :value="60" size="xl" />
-        <GaugeSetup :value="60" size="2xl" />
+        <GaugeSetup :value="80" size="lg" />
       </div>
     </div>
 
