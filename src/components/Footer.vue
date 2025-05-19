@@ -26,10 +26,6 @@ const secondPathVariants = {
   },
 }
 
-function openGitHub() {
-  window.open('https://github.com/gokh4nozturk?ref=gauge-component', '_blank')
-}
-
 function scrollToTop() {
   window.scrollTo({ top: 0, behavior: 'smooth' })
   if (router.currentRoute.value.name === 'docs') {
@@ -51,8 +47,11 @@ function handleMouseLeave() {
   <footer class="bg-background h-44 text-muted-foreground relative border-t mt-10">
     <div class="flex flex-col justify-center items-center h-full gap-2">
       <p>© {{ new Date().getFullYear() }} Gauge. All rights reserved.</p>
-      <Button variant="link" class="text-sm p-0" @click="openGitHub">
-        Made with ❤️ by <a href="https://github.com/gokh4nozturk" target="_blank">Gökhan Öztürk</a>
+      <Button variant="link" class="text-sm p-0" as-child>
+        Made with ❤️ by
+        <a href="https://github.com/gokh4nozturk?ref=gauge-component" target="_blank"
+          >gokh4nozturk</a
+        >
       </Button>
     </div>
     <button
@@ -74,7 +73,7 @@ function handleMouseLeave() {
         stroke-linejoin="round"
         class="lucide lucide-arrow-up-icon lucide-arrow-up"
       >
-        <title>Arrow Up</title>
+        <!-- <title>Arrow Up</title> -->
         <motion.path d="m5 12 7-7 7 7" :variants="pathVariants" :animate="controls" />
         <motion.path d="M12 19V5" :variants="secondPathVariants" :animate="controls" />
       </svg>

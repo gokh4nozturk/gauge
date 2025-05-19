@@ -11,6 +11,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
+import { useHead } from '@unhead/vue'
 
 const title = 'Gauge Documentation'
 
@@ -129,22 +130,22 @@ const api = [
       </div>
     </section>
 
-    <Card class="mt-12">
+    <Card>
       <CardHeader>
-        <CardTitle class="text-2xl font-semibold mb-4">Basic Usage</CardTitle>
+        <CardTitle class="text-2xl font-semibold">Basic Usage</CardTitle>
       </CardHeader>
       <Separator />
-      <CardContent class="[&_*]:text-foreground p-4 rounded-lg overflow-x-auto">
+      <CardContent class="[&_*]:text-foreground rounded-lg">
         <CodeBlock :code="basicUsageCode" language="vue" />
       </CardContent>
     </Card>
 
-    <Card class="mt-8">
+    <Card>
       <CardHeader>
-        <CardTitle class="text-2xl font-semibold mb-4">Custom Example</CardTitle>
+        <CardTitle class="text-2xl font-semibold">Custom Example</CardTitle>
       </CardHeader>
       <Separator />
-      <CardContent class="[&_*]:text-foreground p-4 rounded-lg overflow-x-auto">
+      <CardContent class="[&_*]:text-foreground rounded-lg">
         <CodeBlock :code="customExampleCode" language="vue" />
       </CardContent>
     </Card>
