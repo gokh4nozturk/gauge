@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import ModeToggle from '@/components/ModeToggle.vue'
 import { Button } from '@/components/ui/button'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 function openGitHub() {
   window.open('https://github.com/gokh4nozturk/gauge?ref=gauge-component', '_blank')
@@ -8,6 +11,14 @@ function openGitHub() {
 
 function openOnur() {
   window.open('https://gauge.onur.dev?ref=gauge-component', '_blank')
+}
+
+function openDocs() {
+  if (router.currentRoute.value.name === 'docs') {
+    router.push({ name: 'home' })
+  } else {
+    router.push({ name: 'docs' })
+  }
 }
 </script>
 <template>
@@ -37,6 +48,9 @@ function openOnur() {
           <Button variant="link" class="text-sm p-0" @click="openGitHub"> View on GitHub </Button>
           <Button variant="link" class="text-sm p-0" as-child>
             <RouterLink to="#playground"> Playground </RouterLink>
+          </Button>
+          <Button variant="link" class="text-sm p-0" @click="openDocs">
+            {{ router.currentRoute.value.name === 'docs' ? 'Home' : 'Docs' }}
           </Button>
         </div>
       </div>

@@ -4,8 +4,7 @@ import Gauge from '@/components/ui/Gauge.vue'
 import { Button } from '@/components/ui/button'
 import { Card, CardTitle, CardContent, CardDescription } from '@/components/ui/card'
 import Playground from '@/components/Playground.vue'
-import Header from '@/components/Header.vue'
-import Footer from '@/components/Footer.vue'
+
 const value = ref(50)
 const animating = ref(true)
 const animationValue = ref(72)
@@ -31,9 +30,7 @@ function resetAnimation() {
 </script>
 
 <template>
-  <div class="p-6 container mx-auto space-y-10">
-    <Header />
-
+  <main class="p-6 container mx-auto space-y-10">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
       <Card class="p-4 border rounded-lg flex flex-col items-center">
         <CardTitle class="text-lg font-medium mb-4 text-center">Default</CardTitle>
@@ -249,6 +246,5 @@ function resetAnimation() {
 
     <!-- Playground Section -->
     <Playground />
-    <Footer />
-  </div>
+  </main>
 </template>

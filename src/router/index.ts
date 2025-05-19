@@ -13,6 +13,11 @@ const router = createRouter({
       name: 'playground',
       component: () => import('@/components/Playground.vue'),
     },
+    {
+      path: '/docs',
+      name: 'docs',
+      component: () => import('@/views/Docs.vue'),
+    },
   ],
   scrollBehavior(to, _from, savedPosition) {
     if (savedPosition) {
