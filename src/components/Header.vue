@@ -54,7 +54,9 @@ function openDocs() {
 }
 
 function copy() {
-  navigator.clipboard.writeText(packageManagers[packageManager.value])
+  navigator.clipboard.writeText(
+    packageManagers[packageManager.value as keyof typeof packageManagers],
+  )
   copied.value = true
   setTimeout(() => {
     copied.value = false
@@ -84,7 +86,7 @@ function copy() {
               </SelectContent>
             </Select>
 
-            {{ packageManagers[packageManager] }}
+            {{ packageManagers[packageManager as keyof typeof packageManagers] }}
           </code>
           <Button variant="outline" size="icon" class="p-2" @click="copy">
             <AnimatePresence mode="popLayout">
