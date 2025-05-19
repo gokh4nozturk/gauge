@@ -107,13 +107,3 @@ function replayAnimation() {
     </div>
   </div>
 </template>
-
-<style>
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  margin: 0;
-  padding: 20px;
-  color: #333;
-  background-color: #f5f5f5;
-}
-</style>
