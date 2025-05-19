@@ -12,7 +12,7 @@ import {
   SelectItem,
 } from '@/components/ui/select'
 import { AnimatePresence, motion } from 'motion-v'
-
+import { npm, yarn, pnpm, bun } from '@/components/icons'
 const router = useRouter()
 
 const packageManager = ref('npm')
@@ -22,6 +22,13 @@ const packageManagers = {
   yarn: 'add vue-circular-gauge',
   pnpm: 'add vue-circular-gauge',
   bun: 'add vue-circular-gauge',
+}
+
+const as = {
+  npm,
+  yarn,
+  pnpm,
+  bun,
 }
 
 watch(packageManager, (value) => {
@@ -39,10 +46,6 @@ onMounted(() => {
 
 function openGitHub() {
   window.open('https://github.com/gokh4nozturk/gauge?ref=gauge-component', '_blank')
-}
-
-function openOnur() {
-  window.open('https://gauge.onur.dev?ref=gauge-component', '_blank')
 }
 
 function openDocs() {
@@ -77,11 +80,16 @@ function copy() {
           <code class="bg-muted flex items-center rounded-md pr-4 text-sm">
             <Select v-model="packageManager">
               <SelectTrigger>
-                <SelectValue placeholder="Select a package manager" />
+                <SelectValue placeholder="Select a package manager" class="flex items-center gap-2">
+                  <component :is="as[packageManager as keyof typeof as]" />
+                </SelectValue>
               </SelectTrigger>
               <SelectContent>
                 <SelectItem v-for="pm in Object.keys(packageManagers)" :key="pm" :value="pm">
-                  {{ pm }}
+                  <div class="flex items-center gap-3">
+                    <component :is="as[pm as keyof typeof as]" />
+                    {{ pm }}
+                  </div>
                 </SelectItem>
               </SelectContent>
             </Select>
