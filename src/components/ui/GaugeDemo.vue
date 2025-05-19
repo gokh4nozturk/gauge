@@ -12,6 +12,13 @@ function randomizeValue() {
 function toggleAnimation() {
   animating.value = !animating.value
 }
+
+function resetAnimation() {
+  value.value = 0
+  setTimeout(() => {
+    value.value = 72
+  }, 100)
+}
 </script>
 
 <template>
@@ -21,12 +28,12 @@ function toggleAnimation() {
     <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
       <div class="p-4 border rounded-lg flex flex-col items-center">
         <h2 class="text-lg font-medium mb-4">Default</h2>
-        <Gauge :value="value" />
+        <Gauge :value="value" :size="80" />
       </div>
 
       <div class="p-4 border rounded-lg flex flex-col items-center">
         <h2 class="text-lg font-medium mb-4">With Value Display</h2>
-        <Gauge :value="value" :show-value="true" />
+        <Gauge :value="value" :size="80" :show-value="true" />
       </div>
 
       <div class="p-4 border rounded-lg flex flex-col items-center">
@@ -36,6 +43,7 @@ function toggleAnimation() {
           <Gauge :value="value" size="sm" primary="#f59e0b" />
           <Gauge :value="value" size="md" primary="#3b82f6" />
           <Gauge :value="value" size="lg" primary="#22c55e" />
+          <Gauge :value="value" :size="100" primary="#8b5cf6" />
         </div>
       </div>
 
@@ -44,11 +52,11 @@ function toggleAnimation() {
         <div class="flex items-center space-x-16">
           <div class="flex flex-col items-center">
             <span class="text-sm mb-2">Ascending</span>
-            <Gauge :value="value" variant="ascending" primary="#f59e0b" />
+            <Gauge :value="value" :size="80" variant="ascending" primary="#f59e0b" />
           </div>
           <div class="flex flex-col items-center">
             <span class="text-sm mb-2">Descending</span>
-            <Gauge :value="value" variant="descending" primary="#f59e0b" />
+            <Gauge :value="value" :size="80" variant="descending" primary="#f59e0b" />
           </div>
         </div>
       </div>
@@ -56,29 +64,43 @@ function toggleAnimation() {
       <div class="p-4 border rounded-lg flex flex-col items-center">
         <h2 class="text-lg font-medium mb-4">Custom Colors</h2>
         <div class="flex items-center space-x-8">
-          <Gauge :value="value" primary="#e11d48" secondary="#fee2e2" />
-          <Gauge :value="value" primary="#3b82f6" secondary="#dbeafe" />
-          <Gauge :value="value" primary="#22c55e" secondary="#dcfce7" />
+          <Gauge :value="value" :size="60" primary="#e11d48" secondary="#fee2e2" />
+          <Gauge :value="value" :size="60" primary="#3b82f6" secondary="#dbeafe" />
+          <Gauge :value="value" :size="60" primary="#22c55e" secondary="#dcfce7" />
         </div>
       </div>
 
       <div class="p-4 border rounded-lg flex flex-col items-center">
         <h2 class="text-lg font-medium mb-4">With Animation</h2>
         <div class="flex flex-col items-center space-y-4">
-          <Gauge :value="value" :show-animation="animating" primary="#22c55e" size="lg" />
-          <button
-            class="px-4 py-2 bg-slate-800 text-white rounded hover:bg-slate-700 transition-colors"
-            @click="toggleAnimation"
-          >
-            {{ animating ? 'Disable' : 'Enable' }} Animation
-          </button>
+          <Gauge
+            :value="72"
+            :show-animation="animating"
+            :show-value="true"
+            primary="#22c55e"
+            :size="80"
+          />
+          <div class="flex space-x-4">
+            <button
+              class="px-4 py-2 bg-slate-800 text-white rounded hover:bg-slate-700 transition-colors"
+              @click="toggleAnimation"
+            >
+              {{ animating ? 'Disable' : 'Enable' }} Animation
+            </button>
+            <button
+              class="px-4 py-2 bg-slate-800 text-white rounded hover:bg-slate-700 transition-colors"
+              @click="resetAnimation"
+            >
+              Replay Animation
+            </button>
+          </div>
         </div>
       </div>
 
       <div class="p-4 border rounded-lg flex flex-col items-center">
         <h2 class="text-lg font-medium mb-4">Interactive</h2>
         <div class="flex flex-col items-center space-y-4">
-          <Gauge :value="value" :show-value="true" primary="#f59e0b" size="lg" />
+          <Gauge :value="value" :show-value="true" primary="#f59e0b" :size="80" />
           <div class="flex items-center w-full max-w-xs space-x-4">
             <span class="text-sm">Value:</span>
             <input type="range" v-model="value" min="0" max="100" class="w-full" />
@@ -90,6 +112,24 @@ function toggleAnimation() {
           >
             Random Value
           </button>
+        </div>
+      </div>
+
+      <div class="p-4 border rounded-lg flex flex-col items-center">
+        <h2 class="text-lg font-medium mb-4">Different Gap Percentages</h2>
+        <div class="flex items-center space-x-8">
+          <div class="flex flex-col items-center">
+            <span class="text-sm mb-2">5%</span>
+            <Gauge :value="value" :size="60" :gap-percent="5" />
+          </div>
+          <div class="flex flex-col items-center">
+            <span class="text-sm mb-2">10%</span>
+            <Gauge :value="value" :size="60" :gap-percent="10" />
+          </div>
+          <div class="flex flex-col items-center">
+            <span class="text-sm mb-2">20%</span>
+            <Gauge :value="value" :size="60" :gap-percent="20" />
+          </div>
         </div>
       </div>
     </div>

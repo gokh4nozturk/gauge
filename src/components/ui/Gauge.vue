@@ -96,12 +96,13 @@ const containerStyle = computed(() => ({
   height: `${computedSize.value}px`,
 }))
 
-const valueFontSize = computed(() => `${Math.max(computedSize.value / 2.5, 16)}px`)
+const valueFontSize = computed(() => `${Math.max(computedSize.value / 3, 13)}px`)
 const valueFontColor = computed(() => '#000')
 
 // SVG configurations
-const center = 60
-const radius = 50
+const viewBoxSize = 120
+const center = viewBoxSize / 2
+const radius = (viewBoxSize / 2) * 0.85 // Slightly adjust radius to better match original
 
 // Animation configurations
 const foregroundAnimation = computed(() => {
@@ -187,7 +188,7 @@ function getGaugeColor(value: number, type: 'primary' | 'secondary'): string {
     return '#e5e7eb' // Default secondary color (gray)
   }
 
-  // For primary, use color scale based on value
+  // For primary, use color scale based on value - matching onur.dev gauge colors
   if (value <= 25) return '#ef4444' // Red for low values
   if (value <= 50) return '#f59e0b' // Amber for medium-low values
   if (value <= 75) return '#3b82f6' // Blue for medium-high values
@@ -246,14 +247,15 @@ watch(
       />
 
       <!-- Value Background Circle -->
-      <circle v-if="showValue" cx="60" cy="60" :r="radius / 2.5" fill="white" opacity="0.9" />
+      <circle v-if="showValue" cx="60" cy="60" :r="radius / 2.5" fill="white" opacity="0.95" />
 
       <!-- Value Text -->
       <motion.text
         v-if="showValue"
         x="60"
-        y="66"
+        y="65"
         text-anchor="middle"
+        dominant-baseline="middle"
         class="gauge-value font-semibold select-none"
         :style="{ fontSize: valueFontSize, fill: valueFontColor }"
         :initial="props.showAnimation ? { opacity: 0, scale: 0.8 } : {}"
