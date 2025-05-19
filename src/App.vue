@@ -1,15 +1,121 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { ref, reactive } from 'vue'
+import GaugeSetup from './components/GaugeSetup.vue'
+
+const interactiveValue = ref(50)
+const animatedGauge = reactive({
+  value: 80,
+  showAnimation: true,
+})
+
+function replayAnimation() {
+  // Reset the animation by temporarily setting the value to 0
+  // and then back to the original value
+  const originalValue = animatedGauge.value
+  animatedGauge.value = 0
+
+  setTimeout(() => {
+    animatedGauge.value = originalValue
+  }, 50)
+}
 </script>
 
 <template>
-  <header>
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-      </nav>
-    </div>
-  </header>
+  <div class="max-w-[900px] mx-auto p-5 bg-white rounded-lg shadow-sm">
+    <h1 class="text-center mb-10 text-[#2c3e50]">Gauge Component Examples</h1>
 
-  <RouterView />
+    <div class="mb-10 p-5 bg-[#fcfcfc] rounded-lg">
+      <h2 class="mt-0 text-[#2c3e50] border-b border-gray-200 pb-2">Default</h2>
+      <div class="flex flex-wrap gap-5 items-center justify-center mt-5">
+        <GaugeSetup :value="42" />
+      </div>
+    </div>
+
+    <div class="mb-10 p-5 bg-[#fcfcfc] rounded-lg">
+      <h2 class="mt-0 text-[#2c3e50] border-b border-gray-200 pb-2">With Value Display</h2>
+      <div class="flex flex-wrap gap-5 items-center justify-center mt-5">
+        <GaugeSetup :value="75" :show-value="true" />
+      </div>
+    </div>
+
+    <div class="mb-10 p-5 bg-[#fcfcfc] rounded-lg">
+      <h2 class="mt-0 text-[#2c3e50] border-b border-gray-200 pb-2">Different Sizes</h2>
+      <div class="flex flex-wrap gap-5 items-center justify-center mt-5">
+        <GaugeSetup :value="60" size="xs" />
+        <GaugeSetup :value="60" size="sm" />
+        <GaugeSetup :value="60" size="md" />
+        <GaugeSetup :value="60" size="lg" />
+        <GaugeSetup :value="60" size="xl" />
+        <GaugeSetup :value="60" size="2xl" />
+      </div>
+    </div>
+
+    <div class="mb-10 p-5 bg-[#fcfcfc] rounded-lg">
+      <h2 class="mt-0 text-[#2c3e50] border-b border-gray-200 pb-2">Different Variants</h2>
+      <div class="flex flex-wrap gap-5 items-center justify-center mt-5">
+        <div class="flex flex-col items-center text-center">
+          <p class="mt-0 mb-2.5 font-medium">Ascending</p>
+          <GaugeSetup :value="30" variant="ascending" :show-value="true" />
+        </div>
+        <div class="flex flex-col items-center text-center">
+          <p class="mt-0 mb-2.5 font-medium">Descending</p>
+          <GaugeSetup :value="30" variant="descending" :show-value="true" />
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-10 p-5 bg-[#fcfcfc] rounded-lg">
+      <h2 class="mt-0 text-[#2c3e50] border-b border-gray-200 pb-2">Custom Colors</h2>
+      <div class="flex flex-wrap gap-5 items-center justify-center mt-5">
+        <GaugeSetup :value="25" primary="#ff5733" secondary="#f2f2f2" :show-value="true" />
+        <GaugeSetup :value="50" primary="#33a8ff" secondary="#f2f2f2" :show-value="true" />
+        <GaugeSetup :value="75" primary="#33ff57" secondary="#f2f2f2" :show-value="true" />
+      </div>
+    </div>
+
+    <div class="mb-10 p-5 bg-[#fcfcfc] rounded-lg">
+      <h2 class="mt-0 text-[#2c3e50] border-b border-gray-200 pb-2">With Animation</h2>
+      <div class="flex flex-wrap gap-5 items-center justify-center mt-5">
+        <GaugeSetup
+          :value="animatedGauge.value"
+          :show-animation="animatedGauge.showAnimation"
+          :show-value="true"
+          size="lg"
+        />
+        <button
+          class="bg-[#3498db] text-white border-none rounded px-4 py-2 cursor-pointer text-sm mt-2.5 transition-colors hover:bg-[#2980b9]"
+          @click="replayAnimation"
+        >
+          Replay Animation
+        </button>
+      </div>
+    </div>
+
+    <div class="mb-10 p-5 bg-[#fcfcfc] rounded-lg">
+      <h2 class="mt-0 text-[#2c3e50] border-b border-gray-200 pb-2">Interactive</h2>
+      <div class="flex flex-wrap gap-5 items-center justify-center mt-5">
+        <GaugeSetup :value="interactiveValue" :show-value="true" size="lg" />
+        <div class="flex flex-col items-center mt-2.5 gap-2">
+          <input
+            type="range"
+            min="0"
+            max="100"
+            v-model.number="interactiveValue"
+            class="w-[200px]"
+          />
+          <span>{{ interactiveValue }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
+
+<style>
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 20px;
+  color: #333;
+  background-color: #f5f5f5;
+}
+</style>
