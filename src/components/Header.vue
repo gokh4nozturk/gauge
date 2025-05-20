@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, watch, computed } from 'vue'
 import ModeToggle from '@/components/ModeToggle.vue'
 import { Button } from '@/components/ui/button'
 import { useRouter } from 'vue-router'
-import { Copy, Check } from 'lucide-vue-next'
+import { Copy, Check, MonitorCog, BookOpenText, Home } from 'lucide-vue-next'
 import {
   Select,
   SelectTrigger,
@@ -12,10 +12,13 @@ import {
   SelectItem,
 } from '@/components/ui/select'
 import { AnimatePresence, motion } from 'motion-v'
-import { npm, yarn, pnpm, bun } from '@/components/icons'
+import { npm, yarn, pnpm, bun, gh } from '@/components/icons'
 import { toast } from 'vue-sonner'
+import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
 
 const router = useRouter()
+
+const isSmall = computed(() => useBreakpoints(breakpointsTailwind).isSmaller('md'))
 
 const packageManager = ref('bun')
 const copied = ref(false)
@@ -69,6 +72,10 @@ function copy() {
 
   toast.success('Copied to clipboard')
 }
+
+function openPlayground() {
+  router.push('/#playground')
+}
 </script>
 <template>
   <header
@@ -102,7 +109,9 @@ function copy() {
                 </SelectItem>
               </SelectContent>
             </Select>
-            {{ packageManagers[packageManager as keyof typeof packageManagers] }}
+            <span class="text-xs sm:text-sm">
+              {{ packageManagers[packageManager as keyof typeof packageManagers] }}
+            </span>
           </code>
           <Button
             variant="outline"
@@ -137,13 +146,53 @@ function copy() {
         <div class="flex justify-end">
           <ModeToggle />
         </div>
-        <div class="flex flex-col items-end">
-          <Button variant="link" class="p-0 text-sm" @click="openGitHub"> View on GitHub </Button>
-          <Button variant="link" class="p-0 text-sm" as-child>
-            <RouterLink to="/#playground"> Playground </RouterLink>
+        <div class="flex flex-col items-end max-md:gap-2.5">
+          <Button
+            :variant="!isSmall ? 'link' : 'outline'"
+            class="p-0 text-sm"
+            :size="isSmall ? 'icon' : 'default'"
+            @click="openGitHub"
+          >
+            <gh v-if="isSmall" class="h-4 w-4" />
+            <span class="sr-only sm:not-sr-only"> View on GitHub </span>
           </Button>
-          <Button variant="link" class="p-0 text-sm" @click="openDocs">
-            {{ router.currentRoute.value.name === 'docs' ? 'Home' : 'Docs' }}
+          <Button
+            :variant="!isSmall ? 'link' : 'outline'"
+            class="p-0 text-sm"
+            :size="isSmall ? 'icon' : 'default'"
+            @click="openPlayground"
+          >
+            <MonitorCog v-if="isSmall" class="h-4 w-4" />
+            <span class="sr-only sm:not-sr-only"> Playground </span>
+          </Button>
+          <Button
+            :variant="!isSmall ? 'link' : 'outline'"
+            class="p-0 text-sm"
+            :size="isSmall ? 'icon' : 'default'"
+            @click="openDocs"
+          >
+            <AnimatePresence mode="popLayout">
+              <motion.span
+                v-if="router.currentRoute.value.name === 'docs'"
+                :initial="{ opacity: 0, x: -10 }"
+                :animate="{ opacity: 1, x: 0 }"
+                :exit="{ opacity: 0, x: -10 }"
+                :transition="{ duration: 0.2 }"
+              >
+                <Home v-if="isSmall" class="h-4 w-4" />
+                <span class="sr-only sm:not-sr-only"> Home </span>
+              </motion.span>
+              <motion.span
+                v-else
+                :initial="{ opacity: 0, x: 10 }"
+                :animate="{ opacity: 1, x: 0 }"
+                :exit="{ opacity: 0, x: 10 }"
+                :transition="{ duration: 0.2 }"
+              >
+                <BookOpenText v-if="isSmall" class="h-4 w-4" />
+                <span class="sr-only sm:not-sr-only"> Docs </span>
+              </motion.span>
+            </AnimatePresence>
           </Button>
         </div>
       </div>
