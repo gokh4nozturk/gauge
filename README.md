@@ -35,9 +35,6 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import VueCircularGauge from 'vue-circular-gauge'
 
-// Optional: import CSS if your bundler supports it
-import 'vue-circular-gauge/style.css'
-
 const app = createApp(App)
 app.use(VueCircularGauge)
 app.mount('#app')
