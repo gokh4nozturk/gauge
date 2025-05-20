@@ -70,7 +70,11 @@ function copy() {
     copied.value = false
   }, 2000)
 
-  toast.success('Copied to clipboard')
+  toast.success('Copied to clipboard', {
+    onAutoClose: () => {
+      copied.value = false
+    },
+  })
 }
 
 function openPlayground() {

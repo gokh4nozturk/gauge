@@ -116,13 +116,21 @@ watch(copiedCustomExample, (value) => {
 function copyBasicUsage() {
   navigator.clipboard.writeText(basicUsageCode)
   copiedBasicUsage.value = true
-  toast.success('Copied to clipboard')
+  toast.success('Copied to clipboard', {
+    onAutoClose: () => {
+      copiedBasicUsage.value = false
+    },
+  })
 }
 
 function copyCustomExample() {
   navigator.clipboard.writeText(customExampleCode)
   copiedCustomExample.value = true
-  toast.success('Copied to clipboard')
+  toast.success('Copied to clipboard', {
+    onAutoClose: () => {
+      copiedCustomExample.value = false
+    },
+  })
 }
 </script>
 

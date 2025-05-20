@@ -51,7 +51,7 @@ function handleMouseLeave() {
       </p>
       <Button variant="link" class="p-0 text-xs md:text-sm" as-child>
         Made with ❤️ by
-        <a href="https://github.com/gokh4nozturk?ref=gauge-component" target="_blank"
+        <a href="https://github.com/gokh4nozturk?ref=vue-circular-gauge" target="_blank"
           >gokh4nozturk</a
         >
       </Button>
