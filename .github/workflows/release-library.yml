@@ -2,10 +2,8 @@ name: Release Library
 
 on:
   push:
-    branches:
-      - main
-    paths:
-      - 'vue-circular-gauge/**'
+    tags:
+      - 'v*' # Run when tag is pushed matching pattern v*, e.g., v1.0.0
 
 jobs:
   release:

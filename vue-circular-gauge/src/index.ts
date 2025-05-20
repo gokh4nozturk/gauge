@@ -6,7 +6,7 @@ export { Gauge }
 export type { GaugeProps, Size }
 
 export default {
-  install: (app, options = {}) => {
+  install: (app, _options = {}) => {
     app.component('Gauge', Gauge)
   },
 } as Plugin
