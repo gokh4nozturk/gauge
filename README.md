@@ -1,4 +1,6 @@
 [![CodeQL](https://github.com/gokh4nozturk/gauge/actions/workflows/codeql-analysis.yml/badge.svg?branch=master)](https://github.com/gokh4nozturk/gauge/actions/workflows/codeql-analysis.yml)
+[![CI](https://github.com/gokh4nozturk/gauge/actions/workflows/ci.yml/badge.svg)](https://github.com/gokh4nozturk/gauge/actions/workflows/ci.yml)
+[![Release Library](https://github.com/gokh4nozturk/gauge/actions/workflows/release-library.yml/badge.svg)](https://github.com/gokh4nozturk/gauge/actions/workflows/release-library.yml)
 
 # Vue Gauge Component
 
