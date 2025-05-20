@@ -24,6 +24,7 @@ import { Copy, RotateCw } from 'lucide-vue-next'
 import { Checkbox } from '@/components/ui/checkbox'
 import { toast } from 'vue-sonner'
 import { useReplayAnimation, easings } from '@/composables/useReplayAnimation'
+import GaugePkg from '../../vue-circular-gauge/src/components/Gauge.vue'
 
 const initialGaugeValue = 72
 // Internal value for manual input
@@ -95,7 +96,7 @@ function copyConfig() {
       <!-- Gauge Preview -->
       <Card class="col-span-1 grid grid-rows-[1fr_auto] place-items-center rounded-lg border p-6">
         <CardContent>
-          <Gauge
+          <GaugePkg
             :value="gaugeValue"
             :size="playgroundConfig.size"
             :gap-percent="playgroundConfig.gapPercent"

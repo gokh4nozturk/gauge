@@ -19,9 +19,9 @@ import {
   calculateSecondaryStrokeDasharray,
   calculateSecondaryTransform,
   sizeConfig,
-} from '@/utils'
+} from '../utils'
 
-import type { GaugeProps, Size } from '@/types'
+import type { GaugeProps, Size } from '../types'
 
 /**
  * Renders a circular gauge using SVG. Allows configuration of colors, stroke, and animations.
@@ -53,8 +53,8 @@ const circleSize = 100 // px
 const radius = circleSize / 2 - strokeWidth / 2
 const circumference = 2 * Math.PI * radius
 
-const isAscendingVariant = variant === 'ascending'
-const animatedValue = ref(showAnimation ? (isAscendingVariant ? 0 : 100) : value)
+const isAscendingVariant = computed(() => variant === 'ascending')
+const animatedValue = ref(showAnimation ? (isAscendingVariant.value ? 0 : 100) : value)
 const strokePercent = ref(showAnimation ? animatedValue.value : value)
 
 // Trigger animation when component is mounted
@@ -128,7 +128,7 @@ const primaryTransform = computed(() =>
     strokePercent.value,
     offsetFactor.value,
     gapPercent,
-    isAscendingVariant,
+    isAscendingVariant.value,
   ),
 )
 
@@ -137,7 +137,7 @@ const secondaryTransform = computed(() =>
     strokePercent.value,
     offsetFactorSecondary.value,
     gapPercent,
-    isAscendingVariant,
+    isAscendingVariant.value,
   ),
 )
 
