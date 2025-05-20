@@ -1,6 +1,10 @@
 [![CodeQL](https://github.com/gokh4nozturk/gauge/actions/workflows/codeql-analysis.yml/badge.svg?branch=master)](https://github.com/gokh4nozturk/gauge/actions/workflows/codeql-analysis.yml)
 [![CI](https://github.com/gokh4nozturk/gauge/actions/workflows/ci.yml/badge.svg)](https://github.com/gokh4nozturk/gauge/actions/workflows/ci.yml)
 [![Release Library](https://github.com/gokh4nozturk/gauge/actions/workflows/release-library.yml/badge.svg)](https://github.com/gokh4nozturk/gauge/actions/workflows/release-library.yml)
+![NPM Version](https://img.shields.io/npm/v/vue-circular-gauge)
+![NPM Downloads](https://img.shields.io/npm/dm/vue-circular-gauge)
+![npm bundle size](https://img.shields.io/bundlephobia/min/vue-circular-gauge)
+
 
 # Vue Gauge Component
 
