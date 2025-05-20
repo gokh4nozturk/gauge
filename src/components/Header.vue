@@ -77,10 +77,15 @@ function copy() {
           <p>A simple and customizable circular gauge component for Vue 3.</p>
         </div>
         <div class="flex items-center gap-2">
-          <code class="bg-muted flex items-center rounded-md pr-4 text-sm">
+          <code
+            class="bg-background hover:bg-accent hover:text-accent-foreground flex items-center rounded-md border pr-4 text-sm shadow-xs transition-[color,box-shadow] hover:shadow-md"
+          >
             <Select v-model="packageManager">
-              <SelectTrigger>
-                <SelectValue placeholder="Select a package manager" class="flex items-center gap-2">
+              <SelectTrigger class="border-none shadow-none">
+                <SelectValue
+                  placeholder="Select a package manager"
+                  class="flex items-center shadow-md"
+                >
                   <component :is="as[packageManager as keyof typeof as]" />
                 </SelectValue>
               </SelectTrigger>
@@ -93,10 +98,14 @@ function copy() {
                 </SelectItem>
               </SelectContent>
             </Select>
-
             {{ packageManagers[packageManager as keyof typeof packageManagers] }}
           </code>
-          <Button variant="outline" size="icon" class="p-2" @click="copy">
+          <Button
+            variant="outline"
+            size="icon"
+            class="!bg-background hover:!bg-accent p-2"
+            @click="copy"
+          >
             <AnimatePresence mode="popLayout">
               <motion.div
                 v-if="!copied"
