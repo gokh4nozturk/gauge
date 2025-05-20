@@ -1,5 +1,5 @@
-import Gauge from './components/Gauge.vue'
-import type { GaugeProps, Size } from './types'
+import Gauge from '@/components/Gauge.vue'
+import type { GaugeProps, Size } from '@/types'
 import { Plugin } from 'vue'
 
 export { Gauge }

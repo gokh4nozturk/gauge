@@ -21,7 +21,7 @@ import {
   sizeConfig,
 } from '../utils'
 
-import type { GaugeProps, Size } from '../types'
+import type { GaugeProps, Size } from '@/types'
 
 /**
  * Renders a circular gauge using SVG. Allows configuration of colors, stroke, and animations.
