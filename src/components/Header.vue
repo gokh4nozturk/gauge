@@ -12,13 +12,15 @@ import {
   SelectItem,
 } from '@/components/ui/select'
 import { AnimatePresence, motion } from 'motion-v'
-import { npm, yarn, pnpm, bun, gh } from '@/components/icons'
+import { npm, yarn, pnpm, bun, gh, ghDark } from '@/components/icons'
 import { toast } from 'vue-sonner'
 import { breakpointsTailwind, useBreakpoints } from '@vueuse/core'
+import { useColorMode } from '@vueuse/core'
 
 const router = useRouter()
 
 const isSmall = computed(() => useBreakpoints(breakpointsTailwind).isSmaller('md'))
+const colorMode = useColorMode()
 
 const packageManager = ref('bun')
 const copied = ref(false)
@@ -157,8 +159,9 @@ function openPlayground() {
             :size="isSmall ? 'icon' : 'default'"
             @click="openGitHub"
           >
-            <gh v-if="isSmall" class="h-4 w-4" />
-            <span class="sr-only sm:not-sr-only"> View on GitHub </span>
+            <span v-if="!isSmall"> View on GitHub </span>
+            <gh v-else-if="isSmall && colorMode === 'dark'" class="h-4 w-4" />
+            <ghDark v-else-if="isSmall && colorMode === 'light'" class="h-4 w-4" />
           </Button>
           <Button
             :variant="!isSmall ? 'link' : 'outline'"
