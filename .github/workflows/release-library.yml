@@ -4,12 +4,6 @@ on:
   push:
     tags:
       - 'v*' # Run when tag is pushed matching pattern v*, e.g., v1.0.0
-  workflow_dispatch:
-    inputs:
-      version:
-        description: 'Version number'
-        required: true
-        default: '1.0.0'
 
 jobs:
   release:
