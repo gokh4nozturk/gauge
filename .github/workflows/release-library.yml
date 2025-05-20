@@ -37,6 +37,7 @@ jobs:
         run: |
           cd vue-circular-gauge
           pnpm install --frozen-lockfile
+          pnpm add -D semantic-release @semantic-release/changelog @semantic-release/git
 
       - name: Type check
         run: |

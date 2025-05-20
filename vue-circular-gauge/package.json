@@ -74,6 +74,8 @@
     "branches": [
       "master"
     ],
+    "ci": true,
+    "repositoryUrl": "https://github.com/gokh4nozturk/gauge.git",
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
