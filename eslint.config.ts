@@ -31,13 +31,13 @@ export default defineConfigWithVueTs(
     ...pluginPlaywright.configs['flat/recommended'],
     files: ['e2e/**/*.{test,spec}.{js,ts,jsx,tsx}'],
   },
-  ...pluginOxlint.configs['flat/recommended'],
-  skipFormatting,
 
   {
     ...pluginOxlint.configs['flat/recommended'],
     files: ['src/**/*.{ts,tsx,vue}'],
   },
+
+  skipFormatting,
 
   {
     rules: {
