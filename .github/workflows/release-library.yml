@@ -1,0 +1,59 @@
+name: Release Library
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'vue-circular-gauge/**'
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v3
+        with:
+          version: 10.10.0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: |
+          cd vue-circular-gauge
+          pnpm install --frozen-lockfile
+          pnpm add -D semantic-release @semantic-release/changelog @semantic-release/git
+
+      - name: Type check
+        run: |
+          cd vue-circular-gauge
+          pnpm type-check
+
+      - name: Run tests
+        run: |
+          cd vue-circular-gauge
+          pnpm test
+
+      - name: Build package
+        run: |
+          cd vue-circular-gauge
+          pnpm build
+
+      - name: Semantic Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: |
+          cd vue-circular-gauge
+          npx semantic-release
