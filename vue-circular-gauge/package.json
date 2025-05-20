@@ -17,7 +17,8 @@
     "./style.css": "./dist/style.css"
   },
   "files": [
-    "dist"
+    "dist",
+    "CHANGELOG.md"
   ],
   "sideEffects": false,
   "keywords": [
@@ -39,7 +40,8 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+    "semantic-release": "semantic-release"
   },
   "peerDependencies": {
     "vue": "^3.3.0"
@@ -47,6 +49,7 @@
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
+    "semantic-release": "^23.0.2",
     "@types/jsdom": "^21.1.7",
     "@types/node": "^20.10.5",
     "@vitejs/plugin-vue": "^4.5.2",
@@ -55,7 +58,6 @@
     "eslint": "^8.56.0",
     "eslint-plugin-vue": "^9.19.2",
     "jsdom": "^26.1.0",
-    "semantic-release": "^22.0.12",
     "terser": "^5.39.2",
     "typescript": "^5.3.3",
     "vite": "^5.0.10",
@@ -67,6 +69,19 @@
   "dependencies": {
     "clsx": "^2.0.0",
     "tailwind-merge": "^2.1.0"
+  },
+  "release": {
+    "branches": [
+      "master"
+    ],
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      "@semantic-release/github",
+      "@semantic-release/git"
+    ]
   },
   "repository": {
     "type": "git",
