@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { Button } from '@/components/ui/button'
 import {
   Card,
@@ -23,9 +23,14 @@ import { Label } from '@/components/ui/label'
 import { Copy, RotateCw } from 'lucide-vue-next'
 import { Checkbox } from '@/components/ui/checkbox'
 import { toast } from 'vue-sonner'
+import { useReplayAnimation, easings } from '@/composables/useReplayAnimation'
+
+const initialGaugeValue = 72
+// Internal value for manual input
+const manualInputValue = ref(initialGaugeValue)
+
 // Playground reactive state
 const playgroundConfig = ref({
-  value: 72,
   size: 180,
   gapPercent: 5,
   strokeWidth: 8,
@@ -36,17 +41,35 @@ const playgroundConfig = ref({
   showAnimation: true,
 })
 
-function resetPlaygroundAnimation() {
-  playgroundConfig.value.value = 0
-  setTimeout(() => {
-    playgroundConfig.value.value = 72
-  }, 1000)
-}
+// Use the animation composable
+const {
+  value: gaugeValue,
+  isAnimating,
+  replay: replayAnimation,
+  setTargetValue,
+} = useReplayAnimation({
+  initialValue: initialGaugeValue,
+  startValue: 0,
+  duration: 2000,
+  easing: easings.easeOutQuad,
+})
+
+// Sync manual value to gauge target value
+watch(manualInputValue, (newValue) => {
+  setTargetValue(newValue)
+})
+
+// Sync gauge value back to manual input when it changes
+watch(gaugeValue, (newValue) => {
+  if (!isAnimating.value) {
+    manualInputValue.value = newValue
+  }
+})
 
 function copyConfig() {
   const componentCode = `
   <Gauge
-    :value="${playgroundConfig.value.value}"
+    :value="${gaugeValue.value}"
     :size="${playgroundConfig.value.size}"
     :gap-percent="${playgroundConfig.value.gapPercent}"
     :stroke-width="${playgroundConfig.value.strokeWidth}"
@@ -73,7 +96,7 @@ function copyConfig() {
       <Card class="col-span-1 grid grid-rows-[1fr_auto] place-items-center rounded-lg border p-6">
         <CardContent>
           <Gauge
-            :value="playgroundConfig.value"
+            :value="gaugeValue"
             :size="playgroundConfig.size"
             :gap-percent="playgroundConfig.gapPercent"
             :stroke-width="playgroundConfig.strokeWidth"
@@ -85,9 +108,9 @@ function copyConfig() {
           />
         </CardContent>
         <CardFooter class="w-full">
-          <Button class="w-full" variant="outline" @click="resetPlaygroundAnimation">
-            <RotateCw class="mr-2 h-4 w-4" />
-            Replay Animation
+          <Button class="w-full" variant="outline" @click="replayAnimation" :disabled="isAnimating">
+            <RotateCw class="mr-2 h-4 w-4" :class="{ 'animate-spin': isAnimating }" />
+            {{ isAnimating ? 'Animating...' : 'Replay Animation' }}
           </Button>
         </CardFooter>
       </Card>
@@ -116,7 +139,7 @@ function copyConfig() {
           <!-- Value -->
           <div class="space-y-2">
             <Label>Value</Label>
-            <Input type="number" v-model="playgroundConfig.value" min="0" max="100" />
+            <Input type="number" v-model="manualInputValue" min="0" max="100" />
           </div>
 
           <!-- Size -->
