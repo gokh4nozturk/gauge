@@ -22,7 +22,7 @@ const copiedBasicUsage = ref(false)
 const copiedCustomExample = ref(false)
 
 const basicUsageCode = `<script setup lang="ts">
-import { Gauge } from '@/components/Gauge'
+import { Gauge } from 'vue-circular-gauge'
 <\/script>
 
 <template>
@@ -30,7 +30,7 @@ import { Gauge } from '@/components/Gauge'
 </template>`
 
 const customExampleCode = `<script setup lang="ts">
-import { Gauge } from '@/components/Gauge'
+import { Gauge } from 'vue-circular-gauge'
 <\/script>
 
 <template>

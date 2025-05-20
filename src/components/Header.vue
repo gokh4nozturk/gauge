@@ -17,7 +17,7 @@ import { toast } from 'vue-sonner'
 
 const router = useRouter()
 
-const packageManager = ref('npm')
+const packageManager = ref('bun')
 const copied = ref(false)
 const packageManagers = {
   npm: 'i vue-circular-gauge',
@@ -40,14 +40,14 @@ watch(packageManager, (value) => {
 onMounted(() => {
   const storage = localStorage.getItem('packageManager')
   if (storage) {
-    packageManager.value = storage
+    packageManager.value = storage as keyof typeof packageManagers
   } else {
     localStorage.setItem('packageManager', packageManager.value)
   }
 })
 
 function openGitHub() {
-  window.open('https://github.com/gokh4nozturk/gauge?ref=gauge-component', '_blank')
+  window.open('https://github.com/gokh4nozturk/gauge?ref=vue-circular-gauge', '_blank')
 }
 
 function openDocs() {
