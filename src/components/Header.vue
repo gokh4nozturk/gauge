@@ -13,6 +13,8 @@ import {
 } from '@/components/ui/select'
 import { AnimatePresence, motion } from 'motion-v'
 import { npm, yarn, pnpm, bun } from '@/components/icons'
+import { toast } from 'vue-sonner'
+
 const router = useRouter()
 
 const packageManager = ref('npm')
@@ -64,6 +66,8 @@ function copy() {
   setTimeout(() => {
     copied.value = false
   }, 2000)
+
+  toast.success('Copied to clipboard')
 }
 </script>
 <template>
