@@ -2,6 +2,8 @@ name: Release Library
 
 on:
   push:
+    branches:
+      - master # Run on push to master, not just on tag push
     tags:
       - 'v*' # Run when tag is pushed matching pattern v*, e.g., v1.0.0
   workflow_dispatch:
@@ -36,6 +38,7 @@ jobs:
         with:
           node-version: 22
           cache: 'pnpm'
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
         run: |
@@ -60,7 +63,8 @@ jobs:
       - name: Semantic Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           cd vue-circular-gauge
-          npx semantic-release
+          npx semantic-release --debug
