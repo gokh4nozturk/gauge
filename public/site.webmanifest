@@ -1,6 +1,6 @@
 {
-  "name": "MyWebSite",
-  "short_name": "MySite",
+  "name": "Vue Circular Gauge",
+  "short_name": "Vue Gauge",
   "icons": [
     {
       "src": "/web-app-manifest-192x192.png",
