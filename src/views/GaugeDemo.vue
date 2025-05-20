@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import Gauge from '@/components/ui/Gauge.vue'
 import { Button } from '@/components/ui/button'
 import { Card, CardTitle, CardContent, CardDescription } from '@/components/ui/card'
 import Playground from '@/components/Playground.vue'

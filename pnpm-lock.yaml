@@ -65,6 +65,9 @@ importers:
       vue:
         specifier: ^3.5.13
         version: 3.5.14(typescript@5.8.3)
+      vue-circular-gauge:
+        specifier: ^1.0.0
+        version: 1.0.0(vue@3.5.14(typescript@5.8.3))
       vue-router:
         specifier: ^4.5.0
         version: 4.5.1(vue@3.5.14(typescript@5.8.3))
@@ -2381,6 +2384,9 @@ packages:
     resolution: {integrity: sha512-2pR2ubZSV64f/vqm9eLPz/KOvR9Dm+Co/5ChLgeHl0yEDRc6h5hXHoxEQH8Y5Ljycozd3p1k5TTSVdzYGkPvLw==}
     engines: {node: ^14.18.0 || >=16.0.0}
 
+  tailwind-merge@2.6.0:
+    resolution: {integrity: sha512-P+Vu1qXfzediirmHOC3xKGAYeZtPcV9g76X+xg2FD4tYgR71ewMA35Y3sCz3zhiN/dwefRpJX0yBcgwi1fXNQA==}
+
   tailwind-merge@3.3.0:
     resolution: {integrity: sha512-fyW/pEfcQSiigd5SNn0nApUOxx0zB/dm6UDU/rEwc2c3sX2smWUNbapHv+QRqLGVp9GWX3THIa7MUGPo+YkDzQ==}
 
@@ -2605,6 +2611,11 @@ packages:
 
   vscode-uri@3.1.0:
     resolution: {integrity: sha512-/BpdSx+yCQGnCvecbyXdxHDkuk55/G3xwnC0GqY4gmQ3j+A+g8kzzgB4Nk/SINjqn6+waqw3EgbVF2QKExkRxQ==}
+
+  vue-circular-gauge@1.0.0:
+    resolution: {integrity: sha512-Y04OnIBd7ljrZCbwSLya/TGKOpd7NAttlyjoNrAMpIcnY3dPMS19sIhT/pDPXy5Dptk+ZMqL8dy4RbFtl3QVVg==}
+    peerDependencies:
+      vue: ^3.3.0
 
   vue-component-type-helpers@2.2.10:
     resolution: {integrity: sha512-iDUO7uQK+Sab2tYuiP9D1oLujCWlhHELHMgV/cB13cuGbG4qwkLHvtfWb6FzvxrIOPDnU0oHsz2MlQjhYDeaHA==}
@@ -4858,6 +4869,8 @@ snapshots:
     dependencies:
       '@pkgr/core': 0.2.4
 
+  tailwind-merge@2.6.0: {}
+
   tailwind-merge@3.3.0: {}
 
   tailwindcss@4.1.7: {}
@@ -5092,6 +5105,12 @@ snapshots:
       - yaml
 
   vscode-uri@3.1.0: {}
+
+  vue-circular-gauge@1.0.0(vue@3.5.14(typescript@5.8.3)):
+    dependencies:
+      clsx: 2.1.1
+      tailwind-merge: 2.6.0
+      vue: 3.5.14(typescript@5.8.3)
 
   vue-component-type-helpers@2.2.10: {}
 
