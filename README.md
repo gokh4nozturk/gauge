@@ -1,3 +1,5 @@
+[![CodeQL](https://github.com/gokh4nozturk/gauge/actions/workflows/codeql-analysis.yml/badge.svg?branch=master)](https://github.com/gokh4nozturk/gauge/actions/workflows/codeql-analysis.yml)
+
 # Vue Gauge Component
 
 A customizable circular gauge/progress component for Vue.js. This component is a Vue port of the [Gauge component by Onur Şuyalçınkaya](https://github.com/suyalcinkaya/gauge).
