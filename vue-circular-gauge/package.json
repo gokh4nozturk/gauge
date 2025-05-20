@@ -61,7 +61,7 @@
   },
   "dependencies": {
     "clsx": "^2.0.0",
-    "tailwind-merge": "^2.1.0"
+    "tailwind-merge": "^3.3.0"
   },
   "repository": {
     "type": "git",
