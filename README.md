@@ -2,7 +2,7 @@
 
 A customizable circular gauge/progress component for Vue.js. This component is a Vue port of the [Gauge component by Onur Şuyalçınkaya](https://github.com/suyalcinkaya/gauge).
 
-![Vue Gauge Component Preview](https://gauge.gokhanozturk.io/preview.png)
+![Vue Gauge Component Preview](https://gauge.gokhanozturk.io/preview.jpeg)
 
 ## Features
 

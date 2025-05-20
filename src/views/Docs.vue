@@ -83,12 +83,12 @@ const api = [
   {
     property: 'primary',
     description: 'The primary color of the Gauge.',
-    default: 'red',
+    default: '#10b981',
   },
   {
     property: 'secondary',
     description: 'The secondary color of the Gauge.',
-    default: 'gray',
+    default: '#e5e7eb',
   },
   {
     property: 'props',
