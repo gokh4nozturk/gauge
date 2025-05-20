@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Demo from '@/views/GaugeDemo.vue'
+import Docs from '@/views/Docs.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -17,7 +18,7 @@ const router = createRouter({
     {
       path: '/docs',
       name: 'docs',
-      component: () => import('@/views/Docs.vue'),
+      component: Docs,
     },
   ],
   scrollBehavior(to, _from, savedPosition) {
