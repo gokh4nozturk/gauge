@@ -57,7 +57,7 @@
     "vite-plugin-dts": "^2.3.0",
     "vitest": "^1.0.4",
     "vue": "^3.3.11",
-    "vue-tsc": "^1.8.25"
+    "vue-tsc": "^2.2.10"
   },
   "dependencies": {
     "clsx": "^2.0.0",
