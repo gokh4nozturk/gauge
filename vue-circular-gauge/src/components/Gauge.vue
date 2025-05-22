@@ -35,6 +35,9 @@ import type { GaugeProps, Size } from '@/types'
  * @param showAnimation - Option to animate the gauge's progress. Defaults to false.
  * @param primary - Primary color or set of colors for the gauge, with optional threshold values to determine color changes.
  * @param secondary - Secondary color or set of colors for the gauge, similar to `primary`.
+ * @param idleMode - Shows a pulse icon in the center instead of value. Defaults to false.
+ * @param idleIcon - Custom SVG path for the idle icon. Defaults to a pulse/heartbeat icon.
+ * @param idleIconColor - Color of the idle icon. Defaults to currentColor.
  * @param props - Configuration and properties for the svg.
  */
 const {
@@ -47,6 +50,9 @@ const {
   primary = '#10b981',
   secondary = '#e5e7eb',
   value = 0,
+  idleMode = false,
+  idleIcon = 'M10,20 L20,10 L30,20 L40,10 L50,20',
+  idleIconColor = 'currentColor',
 } = defineProps<GaugeProps>()
 
 const circleSize = 100 // px
@@ -57,19 +63,23 @@ const isAscendingVariant = computed(() => variant === 'ascending')
 const animatedValue = ref(showAnimation ? (isAscendingVariant.value ? 0 : 100) : value)
 const strokePercent = ref(showAnimation ? animatedValue.value : value)
 
+// Computed value for idle mode
+const effectiveValue = computed(() => (idleMode ? 100 : value))
+const effectiveStrokePercent = computed(() => (idleMode ? 100 : strokePercent.value))
+
 // Trigger animation when component is mounted
 onMounted(() => {
   if (showAnimation) {
     // Use setTimeout to ensure the initial state is rendered first
     setTimeout(() => {
-      strokePercent.value = value
+      strokePercent.value = effectiveValue.value
     }, 50)
   }
 })
 
 // Update strokePercent when value changes
 watch(
-  () => value,
+  () => effectiveValue.value,
   (newValue) => {
     strokePercent.value = newValue
   },
@@ -107,7 +117,7 @@ const circleProps: ComputedRef<SVGAttributes> = computed(() => ({
 
 const primaryStrokeDasharray = computed(() =>
   calculatePrimaryStrokeDasharray(
-    strokePercent.value,
+    effectiveStrokePercent.value,
     offsetFactor.value,
     gapPercent,
     circumference,
@@ -116,7 +126,7 @@ const primaryStrokeDasharray = computed(() =>
 
 const secondaryStrokeDasharray = computed(() =>
   calculateSecondaryStrokeDasharray(
-    strokePercent.value,
+    effectiveStrokePercent.value,
     offsetFactorSecondary.value,
     gapPercent,
     circumference,
@@ -125,7 +135,7 @@ const secondaryStrokeDasharray = computed(() =>
 
 const primaryTransform = computed(() =>
   calculatePrimaryTransform(
-    strokePercent.value,
+    effectiveStrokePercent.value,
     offsetFactor.value,
     gapPercent,
     isAscendingVariant.value,
@@ -134,20 +144,24 @@ const primaryTransform = computed(() =>
 
 const secondaryTransform = computed(() =>
   calculateSecondaryTransform(
-    strokePercent.value,
+    effectiveStrokePercent.value,
     offsetFactorSecondary.value,
     gapPercent,
     isAscendingVariant.value,
   ),
 )
 
-const primaryStroke = computed(() => calculatePrimaryStroke(primary, strokePercent.value))
-const secondaryStroke = computed(() => calculateSecondaryStroke(secondary, strokePercent.value))
+const primaryStroke = computed(() => calculatePrimaryStroke(primary, effectiveStrokePercent.value))
+const secondaryStroke = computed(() =>
+  idleMode
+    ? primaryStroke.value
+    : calculateSecondaryStroke(secondary, effectiveStrokePercent.value),
+)
 
 const primaryOpacity = computed(() =>
   calculatePrimaryOpacity(
     offsetFactor.value,
-    strokePercent.value,
+    effectiveStrokePercent.value,
     gapPercent,
     offsetFactorSecondary.value,
   ),
@@ -156,7 +170,7 @@ const primaryOpacity = computed(() =>
 const secondaryOpacity = computed(() =>
   calculateSecondaryOpacity(
     offsetFactor.value,
-    strokePercent.value,
+    effectiveStrokePercent.value,
     gapPercent,
     offsetFactorSecondary.value,
   ),
@@ -167,6 +181,15 @@ const fontSize = computed(() => {
   const gaugeSize = sizeConfig[size as Size]?.size || 50
   return Math.max(Math.floor(gaugeSize / 3), 12) // Scale font size with gauge size
 })
+
+// Calculate icon size based on gauge size
+const iconSize = computed(() => {
+  const gaugeSize = sizeConfig[size as Size]?.size || 50
+  return Math.max(Math.floor(gaugeSize / 2), 24)
+})
+
+// Center position for icon/text
+const centerPosition = computed(() => circleSize / 2)
 </script>
 
 <template>
@@ -203,10 +226,24 @@ const fontSize = computed(() => {
         opacity: primaryOpacity,
       }"
     />
+
+    <!-- Idle mode icon -->
+    <path
+      v-if="idleMode"
+      :d="idleIcon"
+      :fill="'none'"
+      :stroke="idleIconColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      :transform="`translate(${centerPosition - iconSize / 2}, ${centerPosition - iconSize / 4}) scale(${iconSize / 50})`"
+    />
+
+    <!-- Value text -->
     <text
-      v-if="showValue"
-      :x="circleSize / 2"
-      :y="circleSize / 2"
+      v-else-if="showValue"
+      :x="centerPosition"
+      :y="centerPosition"
       text-anchor="middle"
       dominant-baseline="central"
       fill="currentColor"

@@ -12,4 +12,7 @@ export interface GaugeProps extends /* @vue-ignore */ SVGAttributes {
   showAnimation?: boolean
   primary?: string | { [key: number]: string }
   secondary?: string | { [key: number]: string }
+  idleMode?: boolean
+  idleIcon?: string
+  idleIconColor?: string
 }
