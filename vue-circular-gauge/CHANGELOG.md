@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/gokh4nozturk/gauge/compare/v1.3.0...v1.3.1) (2025-05-22)
+
+
+### Bug Fixes
+
+* update description text style in Header component for better visibility ([7373e87](https://github.com/gokh4nozturk/gauge/commit/7373e873c4696080975dec1420d54afa795625d9))
+
 # [1.3.0](https://github.com/gokh4nozturk/gauge/compare/v1.2.0...v1.3.0) (2025-05-20)
 
 
