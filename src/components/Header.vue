@@ -91,7 +91,7 @@ function openPlayground() {
       <div class="grid grid-rows-[1fr_auto] gap-4">
         <div class="flex flex-col gap-2">
           <h1 class="text-foreground text-2xl font-bold">Gauge</h1>
-          <p>A simple and customizable circular gauge component for Vue 3.</p>
+          <p class="text-balance">A simple and customizable circular gauge component for Vue 3.</p>
         </div>
         <div class="flex items-center gap-2">
           <code
