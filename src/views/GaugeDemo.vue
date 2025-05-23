@@ -3,10 +3,12 @@ import { ref } from 'vue'
 import { Button } from '@/components/ui/button'
 import { Card, CardTitle, CardContent, CardDescription } from '@/components/ui/card'
 import Playground from '@/components/Playground.vue'
+import { Checkbox } from '@/components/ui/checkbox'
 
 const value = ref(50)
 const animating = ref(true)
 const animationValue = ref(72)
+const idleMode = ref(false)
 
 // Vue.js brand colors
 const vueGreen = '#41B883'
@@ -26,6 +28,10 @@ function resetAnimation() {
     animationValue.value = 72
   }, 1000)
 }
+
+function toggleIdleMode() {
+  idleMode.value = !idleMode.value
+}
 </script>
 
 <template>
@@ -42,9 +48,21 @@ function resetAnimation() {
       </Card>
 
       <Card class="flex flex-col items-center rounded-lg border p-4">
-        <CardTitle class="mb-4 text-center text-lg font-medium">With Value Display</CardTitle>
+        <CardTitle class="mb-4 flex w-full items-center justify-between">
+          <p class="text-lg font-medium">With Value Display</p>
+          <div class="flex items-center space-x-2">
+            <Checkbox id="idle-mode" v-model="idleMode" @change="toggleIdleMode" />
+            <Label for="idle-mode">Idle Mode</Label>
+          </div>
+        </CardTitle>
         <CardContent class="flex flex-col items-center text-center">
-          <Gauge :value="value" :size="80" :show-value="true" />
+          <Gauge
+            :value="value"
+            :size="80"
+            :show-value="true"
+            :idle-mode="idleMode"
+            :show-animation="idleMode"
+          />
           <CardDescription class="mt-4 text-sm text-gray-500">
             Shows the numerical value inside the gauge
           </CardDescription>

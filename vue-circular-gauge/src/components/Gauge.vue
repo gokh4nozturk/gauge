@@ -22,6 +22,7 @@ import {
 } from '../utils'
 
 import type { GaugeProps, Size } from '@/types'
+import { motion } from 'motion-v'
 
 /**
  * Renders a circular gauge using SVG. Allows configuration of colors, stroke, and animations.
@@ -35,6 +36,8 @@ import type { GaugeProps, Size } from '@/types'
  * @param showAnimation - Option to animate the gauge's progress. Defaults to false.
  * @param primary - Primary color or set of colors for the gauge, with optional threshold values to determine color changes.
  * @param secondary - Secondary color or set of colors for the gauge, similar to `primary`.
+ * @param idleMode - Shows a pulse icon in the center instead of value. Defaults to false.
+ * @param idleIconColor - Color of the idle icon. Defaults to currentColor.
  * @param props - Configuration and properties for the svg.
  */
 const {
@@ -47,6 +50,8 @@ const {
   primary = '#10b981',
   secondary = '#e5e7eb',
   value = 0,
+  idleMode = false,
+  idleIconColor = 'hsl(0, 0%, 40%)',
 } = defineProps<GaugeProps>()
 
 const circleSize = 100 // px
@@ -57,19 +62,23 @@ const isAscendingVariant = computed(() => variant === 'ascending')
 const animatedValue = ref(showAnimation ? (isAscendingVariant.value ? 0 : 100) : value)
 const strokePercent = ref(showAnimation ? animatedValue.value : value)
 
+// Computed value for idle mode
+const effectiveValue = computed(() => (idleMode ? 100 : value))
+const effectiveStrokePercent = computed(() => (idleMode ? 100 : strokePercent.value))
+
 // Trigger animation when component is mounted
 onMounted(() => {
   if (showAnimation) {
     // Use setTimeout to ensure the initial state is rendered first
     setTimeout(() => {
-      strokePercent.value = value
+      strokePercent.value = effectiveValue.value
     }, 50)
   }
 })
 
 // Update strokePercent when value changes
 watch(
-  () => value,
+  () => effectiveValue.value,
   (newValue) => {
     strokePercent.value = newValue
   },
@@ -107,7 +116,7 @@ const circleProps: ComputedRef<SVGAttributes> = computed(() => ({
 
 const primaryStrokeDasharray = computed(() =>
   calculatePrimaryStrokeDasharray(
-    strokePercent.value,
+    effectiveStrokePercent.value,
     offsetFactor.value,
     gapPercent,
     circumference,
@@ -116,7 +125,7 @@ const primaryStrokeDasharray = computed(() =>
 
 const secondaryStrokeDasharray = computed(() =>
   calculateSecondaryStrokeDasharray(
-    strokePercent.value,
+    effectiveStrokePercent.value,
     offsetFactorSecondary.value,
     gapPercent,
     circumference,
@@ -125,7 +134,7 @@ const secondaryStrokeDasharray = computed(() =>
 
 const primaryTransform = computed(() =>
   calculatePrimaryTransform(
-    strokePercent.value,
+    effectiveStrokePercent.value,
     offsetFactor.value,
     gapPercent,
     isAscendingVariant.value,
@@ -134,20 +143,26 @@ const primaryTransform = computed(() =>
 
 const secondaryTransform = computed(() =>
   calculateSecondaryTransform(
-    strokePercent.value,
+    effectiveStrokePercent.value,
     offsetFactorSecondary.value,
     gapPercent,
     isAscendingVariant.value,
   ),
 )
 
-const primaryStroke = computed(() => calculatePrimaryStroke(primary, strokePercent.value))
-const secondaryStroke = computed(() => calculateSecondaryStroke(secondary, strokePercent.value))
+const primaryStroke = computed(() =>
+  calculatePrimaryStroke(idleMode ? secondary : primary, effectiveStrokePercent.value),
+)
+const secondaryStroke = computed(() =>
+  idleMode
+    ? primaryStroke.value
+    : calculateSecondaryStroke(secondary, effectiveStrokePercent.value),
+)
 
 const primaryOpacity = computed(() =>
   calculatePrimaryOpacity(
     offsetFactor.value,
-    strokePercent.value,
+    effectiveStrokePercent.value,
     gapPercent,
     offsetFactorSecondary.value,
   ),
@@ -156,7 +171,7 @@ const primaryOpacity = computed(() =>
 const secondaryOpacity = computed(() =>
   calculateSecondaryOpacity(
     offsetFactor.value,
-    strokePercent.value,
+    effectiveStrokePercent.value,
     gapPercent,
     offsetFactorSecondary.value,
   ),
@@ -167,6 +182,26 @@ const fontSize = computed(() => {
   const gaugeSize = sizeConfig[size as Size]?.size || 50
   return Math.max(Math.floor(gaugeSize / 3), 12) // Scale font size with gauge size
 })
+
+// Calculate icon size based on gauge size
+const iconSize = computed(() => {
+  const gaugeSize = sizeConfig[size as Size]?.size || 50
+  return Math.max(Math.floor(gaugeSize / 1.2), 40)
+})
+
+// Original SVG viewBox dimensions
+const originalIconWidth = 16 // SVG path width
+const originalIconHeight = 16 // SVG path height
+
+// Center position calculations
+const centerPosition = computed(() => circleSize / 2)
+const iconScale = computed(() => iconSize.value / 16)
+
+// Icon position adjustments
+const iconXOffset = computed(() => centerPosition.value - (originalIconWidth * iconScale.value) / 2)
+const iconYOffset = computed(
+  () => centerPosition.value - (originalIconHeight * iconScale.value) / 2,
+)
 </script>
 
 <template>
@@ -203,10 +238,43 @@ const fontSize = computed(() => {
         opacity: primaryOpacity,
       }"
     />
+
+    <!-- Idle mode icon -->
+    <motion.path
+      v-if="idleMode"
+      fill="none"
+      :stroke="idleIconColor"
+      :stroke-width="strokeWidth / 3"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      :transform="`translate(${centerPosition - 12}, ${centerPosition - 12})`"
+      d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"
+      :initial="{
+        opacity: 1,
+        pathLength: 1,
+        pathOffset: 0,
+      }"
+      :animate="{
+        opacity: [0, 1],
+        pathLength: [0, 1],
+        pathOffset: [1, 0],
+      }"
+      :transition="{
+        duration: 0.6,
+        ease: 'linear',
+      }"
+      :exit="{
+        opacity: 0,
+        pathLength: 1,
+        pathOffset: 0,
+      }"
+    />
+
+    <!-- Value text -->
     <text
-      v-if="showValue"
-      :x="circleSize / 2"
-      :y="circleSize / 2"
+      v-else-if="showValue"
+      :x="centerPosition"
+      :y="centerPosition"
       text-anchor="middle"
       dominant-baseline="central"
       fill="currentColor"

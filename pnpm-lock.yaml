@@ -63,8 +63,8 @@ importers:
         specifier: ^3.5.13
         version: 3.5.14(typescript@5.8.3)
       vue-circular-gauge:
-        specifier: ^1.3.0
-        version: 1.3.0(vue@3.5.14(typescript@5.8.3))
+        specifier: 2.0.1
+        version: 2.0.1(vue@3.5.14(typescript@5.8.3))
       vue-router:
         specifier: ^4.5.0
         version: 4.5.1(vue@3.5.14(typescript@5.8.3))
@@ -2726,8 +2726,8 @@ packages:
   vscode-uri@3.1.0:
     resolution: {integrity: sha512-/BpdSx+yCQGnCvecbyXdxHDkuk55/G3xwnC0GqY4gmQ3j+A+g8kzzgB4Nk/SINjqn6+waqw3EgbVF2QKExkRxQ==}
 
-  vue-circular-gauge@1.3.0:
-    resolution: {integrity: sha512-uahkSj5Q46LoGlYDN01yRUIpH3y9o95f4TI58kgvTSMeexSXxA3yBKI6FckgQgr8r/zzTGlhBJP5V5Zd4Ba6UA==}
+  vue-circular-gauge@2.0.1:
+    resolution: {integrity: sha512-e5sQRiw58/1h85135uMQ16X0+KARH6aSGSmbCxmHnQtH6eFbilKAGesJIiy4+stxW8rXXkFLFPlcTYqx6ok0JQ==}
     peerDependencies:
       vue: ^3.3.0
 
@@ -5393,7 +5393,7 @@ snapshots:
 
   vscode-uri@3.1.0: {}
 
-  vue-circular-gauge@1.3.0(vue@3.5.14(typescript@5.8.3)):
+  vue-circular-gauge@2.0.1(vue@3.5.14(typescript@5.8.3)):
     dependencies:
       clsx: 2.1.1
       tailwind-merge: 2.6.0

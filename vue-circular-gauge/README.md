@@ -8,6 +8,7 @@ A highly customizable circular gauge component for Vue.js applications. Perfect 
 - 🔄 Optional animations
 - 📏 Multiple sizes (xs, sm, md, lg, xl, 2xl)
 - 📊 Value display option
+- 🔌 Idle mode with customizable icon
 - 🚀 Lightweight (~5kb minified)
 - 🧩 TypeScript support
 - 📦 Vue 3 and Composition API support
@@ -107,6 +108,27 @@ const currentValue = ref(45)
 </template>
 ```
 
+### With Idle Mode
+
+```vue
+<template>
+  <Gauge :value="75" :idleMode="true" />
+</template>
+```
+
+### With Custom Idle Icon
+
+```vue
+<template>
+  <Gauge
+    :value="75"
+    :idleMode="true"
+    idleIcon="M10,20 L20,10 L30,20 L40,10 L50,20"
+    idleIconColor="#3b82f6"
+  />
+</template>
+```
+
 ### Custom Size
 
 ```vue
@@ -154,17 +176,19 @@ const value = ref(75)
 
 ## Props
 
-| Prop            | Type                                                                | Default       | Description                                |
-| --------------- | ------------------------------------------------------------------- | ------------- | ------------------------------------------ |
-| `value`         | `number`                                                            | `0`           | Current value of the gauge (0-100)         |
-| `size`          | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl' \| number \| string` | `'md'`        | Size of the gauge                          |
-| `gapPercent`    | `number`                                                            | `5`           | Gap percentage of the gauge                |
-| `strokeWidth`   | `number`                                                            | `10`          | Width of the gauge's stroke                |
-| `variant`       | `'ascending' \| 'descending'`                                       | `'ascending'` | Direction of the gauge progress            |
-| `showValue`     | `boolean`                                                           | `false`       | Whether to show the value inside the gauge |
-| `showAnimation` | `boolean`                                                           | `false`       | Whether to animate the gauge on mount      |
-| `primary`       | `string \| Record<number, string>`                                  | `'#10b981'`   | Primary color or color thresholds          |
-| `secondary`     | `string \| Record<number, string>`                                  | `'#e5e7eb'`   | Secondary color or color thresholds        |
+| Prop            | Type                                                                | Default          | Description                                |
+| --------------- | ------------------------------------------------------------------- | ---------------- | ------------------------------------------ |
+| `value`         | `number`                                                            | `0`              | Current value of the gauge (0-100)         |
+| `size`          | `'xs' \| 'sm' \| 'md' \| 'lg' \| 'xl' \| '2xl' \| number \| string` | `'md'`           | Size of the gauge                          |
+| `gapPercent`    | `number`                                                            | `5`              | Gap percentage of the gauge                |
+| `strokeWidth`   | `number`                                                            | `10`             | Width of the gauge's stroke                |
+| `variant`       | `'ascending' \| 'descending'`                                       | `'ascending'`    | Direction of the gauge progress            |
+| `showValue`     | `boolean`                                                           | `false`          | Whether to show the value inside the gauge |
+| `showAnimation` | `boolean`                                                           | `false`          | Whether to animate the gauge on mount      |
+| `primary`       | `string \| Record<number, string>`                                  | `'#10b981'`      | Primary color or color thresholds          |
+| `secondary`     | `string \| Record<number, string>`                                  | `'#e5e7eb'`      | Secondary color or color thresholds        |
+| `idleMode`      | `boolean`                                                           | `false`          | Whether to show idle icon instead of value |
+| `idleIconColor` | `string`                                                            | `'currentColor'` | Color of the idle icon                     |
 
 ## License
 

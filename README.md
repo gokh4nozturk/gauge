@@ -5,7 +5,6 @@
 ![NPM Downloads](https://img.shields.io/npm/dm/vue-circular-gauge)
 ![npm bundle size](https://img.shields.io/bundlephobia/min/vue-circular-gauge)
 
-
 # Vue Gauge Component
 
 A customizable circular gauge/progress component for Vue.js. This component is a Vue port of the [Gauge component by Onur Şuyalçınkaya](https://github.com/suyalcinkaya/gauge).
@@ -21,6 +20,7 @@ A customizable circular gauge/progress component for Vue.js. This component is a
 - Ascending or descending variants
 - Display value inside gauge
 - Fully reactive
+- Idle mode
 
 ## Installation
 
@@ -73,6 +73,7 @@ import { Gauge } from 'vue-circular-gauge'
 | showAnimation | Boolean               | false       | Whether to animate the gauge when it first renders                |
 | primary       | String, Array, Object | null        | Primary color or color scale for the gauge                        |
 | secondary     | String, Array, Object | null        | Secondary color or color scale for the gauge                      |
+| idleMode      | Boolean               | false       | Whether to show the idle mode icon                                |
 
 ## Default Color Scale
 

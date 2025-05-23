@@ -40,6 +40,7 @@ const playgroundConfig = ref({
   secondary: '#e2e8f0',
   showValue: true,
   showAnimation: true,
+  idleMode: false,
 })
 
 // Use the animation composable
@@ -106,6 +107,7 @@ function copyConfig() {
             :secondary="playgroundConfig.secondary"
             :show-value="playgroundConfig.showValue"
             :show-animation="playgroundConfig.showAnimation"
+            :idle-mode="playgroundConfig.idleMode"
           />
         </CardContent>
         <CardFooter class="w-full">
@@ -134,6 +136,12 @@ function copyConfig() {
               <Checkbox id="showAnimation" v-model="playgroundConfig.showAnimation" />
               <div class="grid gap-1.5 leading-none">
                 <Label for="showAnimation"> Show Animation </Label>
+              </div>
+            </div>
+            <div class="items-top flex gap-x-2">
+              <Checkbox id="idleMode" v-model="playgroundConfig.idleMode" />
+              <div class="grid gap-1.5 leading-none">
+                <Label for="idleMode"> Idle Mode </Label>
               </div>
             </div>
           </div>
