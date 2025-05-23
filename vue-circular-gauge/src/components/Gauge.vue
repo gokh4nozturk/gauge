@@ -151,7 +151,9 @@ const secondaryTransform = computed(() =>
   ),
 )
 
-const primaryStroke = computed(() => calculatePrimaryStroke(primary, effectiveStrokePercent.value))
+const primaryStroke = computed(() =>
+  calculatePrimaryStroke(idleMode ? secondary : primary, effectiveStrokePercent.value),
+)
 const secondaryStroke = computed(() =>
   idleMode
     ? primaryStroke.value
