@@ -2,8 +2,6 @@ name: Release Library
 
 on:
   push:
-    branches:
-      - master # Run on push to master, not just on tag push
     tags:
       - 'v*' # Run when tag is pushed matching pattern v*, e.g., v1.0.0
   workflow_dispatch:
