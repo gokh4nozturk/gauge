@@ -7,7 +7,7 @@
 
 # Vue Gauge Component
 
-[Vue Gauge Component](https://github.com/gokh4nozturk/gauge) is an aesthetic and customizable circular visual component for Vue. This component is a Vue port of the [Gauge component by Onur Şuyalçınkaya](https://github.com/suyalcinkaya/gauge).
+[Vue Gauge Component](https://github.com/gokh4nozturk/gauge) is an aesthetic and customizable circular visual component for Vue. This component is a Vue 3 port of the [Gauge component by Onur Şuyalçınkaya](https://github.com/suyalcinkaya/gauge).
 
 ![Vue Gauge Component Preview](https://gauge.gokhanozturk.io/og-image.png)
 
