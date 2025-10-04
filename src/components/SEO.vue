@@ -27,8 +27,8 @@ interface Props {
 
 const props = withDefaults(defineProps<Props>(), {
   title: 'Vue Gauge Component',
-  description: 'A simple and customizable circular gauge component for Vue 3.',
-  image: '/social-image.png',
+  description: 'An aesthetic and customizable circular visual component for Vue.',
+  image: '/og-image.png',
   url: 'https://gauge.gokhanozturk.io',
   type: 'website',
 })
