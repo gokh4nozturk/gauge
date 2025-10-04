@@ -98,7 +98,7 @@ function openPlayground() {
             class="bg-background hover:bg-accent hover:text-accent-foreground flex items-center rounded-md border pr-4 text-sm shadow-xs transition-[color,box-shadow] hover:shadow-md"
           >
             <Select v-model="packageManager">
-              <SelectTrigger class="dark:transparent cursor-pointer border-none shadow-none">
+              <SelectTrigger class="cursor-pointer border-none shadow-none dark:bg-transparent">
                 <SelectValue
                   placeholder="Select a package manager"
                   class="flex items-center shadow-md"
