@@ -49,11 +49,20 @@ function handleMouseLeave() {
       <p class="text-sm md:text-base">
         © {{ new Date().getFullYear() }} Gauge. All rights reserved.
       </p>
-      <Button variant="link" class="p-0 text-xs md:text-sm" as-child>
+      <Button
+        variant="link"
+        class="group dark:hover:shadow-accent p-0 text-xs hover:shadow-xl md:text-sm"
+        as-child
+      >
         Made with ❤️ by
-        <a href="https://github.com/gokh4nozturk?ref=vue-circular-gauge" target="_blank"
-          >gokh4nozturk</a
+        <a
+          href="https://github.com/gokh4nozturk?ref=vue-circular-gauge"
+          target="_blank"
+          class="hover:text-accent-foreground"
         >
+          gokh4nozturk
+        </a>
+        <div class="mt-1 w-full border-b" />
       </Button>
     </div>
     <button

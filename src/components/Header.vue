@@ -98,7 +98,7 @@ function openPlayground() {
             class="bg-background hover:bg-accent hover:text-accent-foreground flex items-center rounded-md border pr-4 text-sm shadow-xs transition-[color,box-shadow] hover:shadow-md"
           >
             <Select v-model="packageManager">
-              <SelectTrigger class="border-none shadow-none">
+              <SelectTrigger class="dark:transparent cursor-pointer border-none shadow-none">
                 <SelectValue
                   placeholder="Select a package manager"
                   class="flex items-center shadow-md"
@@ -122,7 +122,7 @@ function openPlayground() {
           <Button
             variant="outline"
             size="icon"
-            class="!bg-background hover:!bg-accent p-2"
+            class="!bg-background hover:!bg-accent cursor-copy p-2"
             @click="copy"
           >
             <AnimatePresence mode="popLayout">
