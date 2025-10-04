@@ -37,7 +37,7 @@ const route = useRoute()
 
 const pageUrl = computed(() => {
   const baseUrl = props.url.endsWith('/') ? props.url.slice(0, -1) : props.url
-  return `${baseUrl}${route.path}`
+  return `${baseUrl}${route?.path || '/'}`
 })
 
 useSeoMeta({
