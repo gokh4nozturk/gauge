@@ -28,7 +28,7 @@ const router = createRouter({
       return {
         el: to.hash,
         behavior: 'smooth',
-        top: 80, // Adding a top offset when scrolling to hash links
+        top: 0, // Adding a top offset when scrolling to hash links
       }
     }
   },

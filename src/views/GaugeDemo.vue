@@ -50,7 +50,7 @@ function toggleIdleMode() {
       <Card class="flex flex-col items-center rounded-lg border p-4">
         <CardTitle class="mb-4 flex w-full items-center justify-between">
           <p class="text-lg font-medium">With Value Display</p>
-          <div class="flex items-center space-x-2">
+          <div class="flex items-center gap-2">
             <Checkbox id="idle-mode" v-model="idleMode" @change="toggleIdleMode" />
             <Label for="idle-mode">Idle Mode</Label>
           </div>
@@ -72,7 +72,7 @@ function toggleIdleMode() {
       <Card class="flex flex-col items-center rounded-lg border p-4">
         <CardTitle class="mb-4 text-center text-lg font-medium">Different Sizes</CardTitle>
         <CardContent class="flex flex-col items-center text-center">
-          <div class="flex items-center space-x-8">
+          <div class="flex items-center flex-wrap gap-8">
             <div class="flex flex-col items-center">
               <span class="mb-2 text-sm">XS</span>
               <Gauge :value="value" size="xs" primary="#e11d48" />
@@ -99,7 +99,7 @@ function toggleIdleMode() {
       <Card class="flex flex-col items-center rounded-lg border p-4">
         <CardTitle class="mb-4 text-center text-lg font-medium">Arc Priority</CardTitle>
         <CardContent class="flex flex-col items-center text-center">
-          <div class="flex items-center space-x-4">
+          <div class="flex items-center flex-wrap gap-4">
             <div class="flex flex-col items-center">
               <span class="mb-2 text-sm">48</span>
               <Gauge :value="48" :size="60" :show-value="true" />
@@ -130,7 +130,7 @@ function toggleIdleMode() {
       <Card class="flex flex-col items-center rounded-lg border p-4">
         <CardTitle class="mb-4 text-center text-lg font-medium">Different Variants</CardTitle>
         <CardContent class="flex flex-col items-center text-center">
-          <div class="flex w-full items-center justify-center space-x-16">
+          <div class="flex w-full items-center justify-center gap-16">
             <div class="flex flex-col items-center">
               <span class="mb-2 text-sm">Ascending</span>
               <Gauge :value="value" :size="80" variant="ascending" primary="#f59e0b" />
@@ -149,7 +149,7 @@ function toggleIdleMode() {
       <Card class="flex flex-col items-center rounded-lg border p-4">
         <CardTitle class="mb-4 text-center text-lg font-medium">Vue.js Colors</CardTitle>
         <CardContent class="flex flex-col items-center text-center">
-          <div class="flex w-full items-center justify-center space-x-8">
+          <div class="flex w-full items-center flex-wrap justify-center gap-8">
             <div class="flex flex-col items-center">
               <span class="mb-2 text-sm">Vue Green</span>
               <Gauge :value="value" :size="80" :primary="vueGreen" secondary="#dcfce7" />
@@ -178,7 +178,7 @@ function toggleIdleMode() {
       <Card class="flex flex-col items-center rounded-lg border p-4">
         <CardTitle class="mb-4 text-center text-lg font-medium">Custom Colors</CardTitle>
         <CardContent class="flex flex-col items-center text-center">
-          <div class="flex w-full items-center justify-center space-x-8">
+          <div class="flex w-full items-center justify-center gap-8 flex-wrap">
             <Gauge :value="value" :size="60" primary="#e11d48" secondary="#fee2e2" />
             <Gauge :value="value" :size="60" primary="#3b82f6" secondary="#dbeafe" />
             <Gauge :value="value" :size="60" primary="#22c55e" secondary="#dcfce7" />
@@ -200,7 +200,7 @@ function toggleIdleMode() {
               :primary="vueGreen"
               :size="80"
             />
-            <div class="flex space-x-4">
+            <div class="flex gap-4 flex-col sm:flex-row">
               <Button variant="outline" @click="toggleAnimation">
                 {{ animating ? 'Disable' : 'Enable' }} Animation
               </Button>
@@ -218,7 +218,7 @@ function toggleIdleMode() {
         <CardContent class="flex flex-col items-center text-center">
           <div class="flex flex-col items-center space-y-4">
             <Gauge :value="value" :show-value="true" :primary="vueGreen" :size="80" />
-            <div class="flex w-full max-w-xs items-center space-x-4">
+            <div class="flex w-full max-w-xs items-center gap-4">
               <span class="text-sm">Value:</span>
               <input type="range" v-model="value" min="0" max="100" class="w-full" />
               <span class="w-8 text-sm">{{ value }}</span>
@@ -236,7 +236,7 @@ function toggleIdleMode() {
           >Different Gap Percentages</CardTitle
         >
         <CardContent class="flex flex-col items-center text-center">
-          <div class="flex w-full items-center justify-center space-x-8">
+          <div class="flex w-full items-center justify-center gap-8 flex-wrap">
             <div class="flex flex-col items-center">
               <span class="mb-2 text-sm">5%</span>
               <Gauge :value="value" :size="60" :gap-percent="5" />
